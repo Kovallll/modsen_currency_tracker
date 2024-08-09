@@ -1,15 +1,10 @@
 import HtmlWebpackPlugin from 'html-webpack-plugin'
-import MiniCssExtractPlugin, {
-    loader as _loader,
-} from 'mini-css-extract-plugin'
-import { resolve as _resolve } from 'path'
+import path from 'path'
+import { fileURLToPath } from 'url'
 
 import ReactRefreshWebpackPlugin from '@pmmmwh/react-refresh-webpack-plugin'
 
 const plugins = [
-    new MiniCssExtractPlugin({
-        filename: '[name].[contenthash].css',
-    }),
     new HtmlWebpackPlugin({
         template: './public/index.html',
     }),
@@ -19,24 +14,35 @@ if (process.env.SERVE) {
     plugins.push(new ReactRefreshWebpackPlugin())
 }
 
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
+
 export default {
+    mode: 'development',
     plugins,
-    entry: './src/index.jsx',
+    entry: ['./src/index.scss', './src/index.tsx'],
     output: {
-        path: _resolve(__dirname, 'dist'),
+        path: path.resolve(__dirname, 'dist'),
         assetModuleFilename: 'assets/[hash][ext][query]',
         clean: true,
     },
     resolve: {
+        alias: {
+            '@': path.resolve(__dirname, 'src'),
+        },
         extensions: ['.ts', '.js', '.jsx', '.tsx'],
+    },
+    devServer: {
+        static: './dist',
+        hot: true,
     },
     module: {
         rules: [
-            { test: /\.(html)$/, use: ['html-loader'] },
             {
-                test: /\.(s[ac]|c)ss$/i,
-                use: [_loader, 'css-loader', 'postcss-loader', 'sass-loader'],
+                test: /\.(sa|sc|c)ss$/,
+                use: ['style-loader', 'css-loader', 'sass-loader'],
             },
+            { test: /\.(html)$/, use: ['html-loader'] },
             {
                 test: /\.(png|jpe?g|gif|svg|webp|ico)$/i,
             },
@@ -53,6 +59,11 @@ export default {
                         cacheDirectory: true,
                     },
                 },
+            },
+            {
+                test: /\.tsx?$/,
+                use: 'ts-loader',
+                exclude: /node_modules/,
             },
         ],
     },

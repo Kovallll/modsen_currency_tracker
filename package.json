@@ -26,7 +26,14 @@
             "@babel/react"
         ]
     },
+    "husky": {
+        "hooks": {
+            "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+        }
+    },
     "devDependencies": {
+        "@commitlint/cli": "^19.4.0",
+        "@commitlint/config-conventional": "^19.2.2",
         "@eslint/compat": "^1.1.1",
         "@pmmmwh/react-refresh-webpack-plugin": "pmmmwh/react-refresh-webpack-plugin",
         "@types/jest": "^29.5.12",
@@ -51,7 +58,6 @@
         "husky": "^9.1.4",
         "mini-css-extract-plugin": "^2.9.0",
         "postcss": "^8.4.41",
-        "postcss-loader": "^8.1.1",
         "postcss-preset-env": "^10.0.0",
         "prettier": "^3.3.3",
         "prettier-eslint": "^16.3.0",
@@ -59,8 +65,22 @@
         "sass": "^1.77.8",
         "sass-loader": "^16.0.0",
         "style-loader": "^4.0.0",
+        "ts-loader": "^9.5.1",
         "typescript": "^5.5.4",
         "typescript-eslint": "^8.0.1",
+        "typescript-plugin-css-modules": "^5.1.0",
         "webpack-dev-server": "^5.0.4"
+    },
+    "browserslist": {
+        "production": [
+            ">0.2%",
+            "not dead",
+            "not op_mini all"
+        ],
+        "development": [
+            "last 1 chrome version",
+            "last 1 firefox version",
+            "last 1 safari version"
+        ]
     }
 }
