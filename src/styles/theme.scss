@@ -1,0 +1,23 @@
+@import './vars.scss';
+
+:root[data-theme='dark'] {
+    --background-color: #{$bg-dark};
+
+    --primary-color: #{$primary-dark};
+    --secondary-color: #{$secondary-dark};
+
+    --card-background-color: #{$card-bg};
+    --card-border: 2px solid #{$card-border};
+    --card-border-radius: 8px;
+}
+
+:root[data-theme='light'] {
+    --background-color: #{$bg-light};
+
+    --primary-color: #{$primary-light};
+    --secondary-color: #{$secondary-light};
+
+    --card-background-color: #{$card-bg};
+    --card-border: 2px solid #{$card-border};
+    --card-border-radius: 8px;
+}

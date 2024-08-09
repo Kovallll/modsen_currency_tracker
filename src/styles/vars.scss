@@ -1,0 +1,50 @@
+// границы
+$min-w: 375px;
+$max-w: 1225px;
+
+// отступы
+$spacer-base: 32px;
+
+$spacer-xxs: 0.25 * $spacer-base;
+$spacer-xs: 0.5 * $spacer-base;
+$spacer-s: 0.75 * $spacer-base;
+$spacer-m: $spacer-base;
+$spacer-l: 1.5 * $spacer-base;
+$spacer-xl: 2 * $spacer-base;
+$spacer-xxl: 2.25 * $spacer-base;
+
+// шрифты
+$fs-base: 28px;
+
+$fs-xxs: 18px;
+$fs-xs: 20px;
+$fs-s: 24px;
+$fs-m: $fs-base;
+$fs-l: 32px;
+$fs-xl: 36px;
+$fs-xxl: 76px;
+
+// цвета
+$bg-dark: #030304;
+$bg-light: #f7f7f7;
+$primary-dark: #d9d9d9;
+$secondary-dark: #a7b2c3;
+$primary-light: #1d1c1c;
+$secondary-light: #525151;
+$grey: #898989;
+$white: #fff;
+$black: #000;
+$card-bg: #202025;
+$card-border: #474747;
+$search-bg: #1b2028;
+$gradient: linear-gradient(92deg, #00ce2c 0%, #aedf23 49.26%, #a3dc00 100%);
+
+// breakpoints
+$sm: 576px;
+$md: 768px;
+$lg: 992px;
+$xl: 1100px;
+$xxl: 1225px;
+
+//шрифт
+$ff: Helvetica;

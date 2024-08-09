@@ -1,0 +1,11 @@
+@import './styles/vars.scss';
+@import './styles/reset.scss';
+@import './styles/theme.scss';
+
+html {
+    font-size: $fs-base;
+}
+
+body {
+    font-family: $ff;
+}
