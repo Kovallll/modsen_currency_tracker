@@ -39,23 +39,7 @@ export default {
     module: {
         rules: [
             {
-                test: /\.module\.(sa|sc|c)ss$/,
-                use: [
-                    'style-loader',
-                    {
-                        loader: 'css-loader',
-                        options: {
-                            modules: {
-                                mode: 'icss',
-                            },
-                        },
-                    },
-                    'sass-loader',
-                ],
-            },
-            {
                 test: /\.(sa|sc|c)ss$/,
-                exclude: /\.module\.(sa|sc|c)ss$/,
                 use: ['style-loader', 'css-loader', 'sass-loader'],
             },
             { test: /\.(html)$/, use: ['html-loader'] },

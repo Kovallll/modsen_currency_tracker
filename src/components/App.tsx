@@ -1,6 +1,7 @@
 import { useContext, useEffect } from 'react'
 
-import './App.scss'
+import * as styles from './App.module.scss'
+
 import { ThemeContext } from '@/providers/ThemeProvider/ThemeProvier'
 
 const App = () => {
@@ -11,7 +12,7 @@ const App = () => {
     }, [theme])
 
     return (
-        <div className="app">
+        <div className={styles.app}>
             <p>Text</p>
             <button onClick={toggleTheme}>toggle</button>
         </div>
