@@ -20,7 +20,7 @@ const __dirname = path.dirname(__filename)
 export default {
     mode: 'development',
     plugins,
-    entry: ['./src/index.scss', './src/index.tsx'],
+    entry: './src/index.tsx',
     output: {
         path: path.resolve(__dirname, 'dist'),
         assetModuleFilename: 'assets/[hash][ext][query]',
@@ -32,15 +32,23 @@ export default {
         },
         extensions: ['.ts', '.js', '.jsx', '.tsx'],
     },
-    devServer: {
-        static: './dist',
-        hot: true,
-    },
     module: {
         rules: [
             {
                 test: /\.(sa|sc|c)ss$/,
-                use: ['style-loader', 'css-loader', 'sass-loader'],
+                use: [
+                    'style-loader',
+                    {
+                        loader: 'css-loader',
+                        options: {
+                            modules: {
+                                localIdentName: '[local]--[hash:base64:16]',
+                            },
+                        },
+                    },
+                    ,
+                    'sass-loader',
+                ],
             },
             { test: /\.(html)$/, use: ['html-loader'] },
             {
