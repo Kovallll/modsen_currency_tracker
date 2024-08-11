@@ -1,0 +1,97 @@
+@import '../../styles/vars.scss';
+
+.container {
+    button {
+        position: relative;
+        width: 100px;
+        height: 50px;
+        margin: 0;
+        border: 1px solid #bbc1e1;
+        border-radius: 30px;
+        outline: none;
+        cursor: pointer;
+        @media (max-width: $xxl) {
+            width: 90px;
+            height: 45px;
+        }
+        @media (max-width: $xl) {
+            width: 80px;
+            height: 40px;
+        }
+        @media (max-width: $lg) {
+            width: 66px;
+            height: 33px;
+        }
+        @media (max-width: $md) {
+            width: 58px;
+            height: 29px;
+        }
+        @media (max-width: $sm) {
+            width: 50px;
+            height: 25px;
+        }
+    }
+
+    button::after {
+        content: '';
+        display: inline-block;
+        position: absolute;
+        top: 1.5px;
+        border-radius: 50%;
+        width: 45px;
+        height: 45px;
+        transition: transform 0.25s;
+
+        @media (max-width: $xxl) {
+            width: 40px;
+            height: 40px;
+        }
+        @media (max-width: $xl) {
+            width: 35px;
+            height: 35px;
+        }
+        @media (max-width: $lg) {
+            width: 28px;
+            height: 28px;
+        }
+        @media (max-width: $md) {
+            width: 24px;
+            height: 24px;
+        }
+        @media (max-width: $sm) {
+            width: 20px;
+            height: 20px;
+        }
+    }
+}
+
+.darkButton {
+    background: #ffffff;
+    &::after {
+        background-color: black;
+    }
+}
+
+.lightButton {
+    background: #000;
+    &::after {
+        background-color: white;
+
+        transform: translateX(-45px);
+        @media (max-width: $xxl) {
+            transform: translateX(-41px);
+        }
+        @media (max-width: $xl) {
+            transform: translateX(-36px);
+        }
+        @media (max-width: $lg) {
+            transform: translateX(-28px);
+        }
+        @media (max-width: $md) {
+            transform: translateX(-24px);
+        }
+        @media (max-width: $sm) {
+            transform: translateX(-21px);
+        }
+    }
+}

@@ -9,6 +9,11 @@
     --card-background-color: #{$card-bg};
     --card-border: 2px solid #{$card-border};
     --card-border-radius: 8px;
+
+    --header-background-color: #{$black};
+    --header-nav-color: #{$white};
+
+    --footer-background-color: #{$black};
 }
 
 :root[data-theme='light'] {
@@ -20,4 +25,9 @@
     --card-background-color: #{$card-bg};
     --card-border: 2px solid #{$card-border};
     --card-border-radius: 8px;
+
+    --header-background-color: #{$white};
+    --header-nav-color: #{$black};
+
+    --footer-background-color: #{$white};
 }

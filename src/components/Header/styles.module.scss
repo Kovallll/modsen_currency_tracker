@@ -1,18 +1,238 @@
+@import '../../styles/vars.scss';
+
 .container {
-    display: flex;
-    height: 20px;
     width: 100%;
-    background: red;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.wrap {
+    position: fixed;
+    top: 0;
+    display: flex;
+    justify-content: center;
+    padding: 0 $spacer-xxl;
+    width: 100%;
+    background-color: var(--header-background-color);
+
+    @media (max-width: $xxl) {
+        padding: 0 $spacer-xl;
+    }
+    @media (max-width: $xl) {
+        padding: 0 $spacer-l;
+    }
+    @media (max-width: $lg) {
+        padding: 0 $spacer-m;
+    }
+    @media (max-width: $md) {
+        padding: 0 $spacer-s;
+    }
+    @media (max-width: $sm) {
+        padding: 0 $spacer-xs;
+    }
 }
 
 .navigation {
     display: flex;
+    width: 100%;
+    max-width: $max-w;
+    height: 100px;
+    justify-content: space-between;
+    align-items: center;
+    @media (max-width: $xxl) {
+        height: 90px;
+    }
+    @media (max-width: $xl) {
+        height: 80px;
+    }
+    @media (max-width: $lg) {
+        height: 70px;
+    }
+    @media (max-width: $md) {
+        height: 65px;
+    }
+    @media (max-width: $sm) {
+        height: 60px;
+    }
 }
 
 .logo {
-    width: 30px;
+    width: 100px;
+    transform: scale(1);
+    @media (max-width: $xxl) {
+        width: 90px;
+        transform: scale(0.9);
+    }
+    @media (max-width: $xl) {
+        width: 80px;
+        transform: scale(0.85);
+    }
+    @media (max-width: $lg) {
+        width: 66px;
+        transform: scale(0.8);
+    }
+    @media (max-width: $md) {
+        width: 58px;
+        transform: scale(0.75);
+    }
+    @media (max-width: $sm) {
+        width: 50px;
+        transform: scale(0.7);
+    }
 }
 
 .links {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 $spacer-xxs;
+    a {
+        padding-left: $spacer-xxxl;
+        &:first-child {
+            padding-left: 0;
+        }
+
+        @media (max-width: $xxl) {
+            padding-left: $spacer-xxl;
+        }
+        @media (max-width: $xl) {
+            padding-left: $spacer-xl;
+        }
+        @media (max-width: $lg) {
+            padding-left: $spacer-m;
+        }
+        @media (max-width: $md) {
+            padding-left: $spacer-s;
+        }
+        @media (max-width: $sm) {
+            padding-left: $spacer-xxs;
+        }
+    }
+}
+
+.link {
+    display: flex;
+    font-size: $fs-xs;
+    text-decoration: none;
+    color: var(--header-nav-color);
+    @media (max-width: $lg) {
+        font-size: $fs-xs;
+    }
+    @media (max-width: $md) {
+        font-size: $fs-xxs;
+    }
+    @media (max-width: $sm) {
+        font-size: $fs-xxxs;
+    }
+}
+
+.toggleButton {
+    display: flex;
+}
+
+.banner {
+    width: 100%;
+    background: $bg-gradient;
+    margin-top: 100px;
+    @media (max-width: $xxl) {
+        margin-top: 90px;
+    }
+    @media (max-width: $xl) {
+        margin-top: 80px;
+    }
+    @media (max-width: $lg) {
+        margin-top: 70px;
+    }
+    @media (max-width: $md) {
+        margin-top: 65px;
+    }
+    @media (max-width: $sm) {
+        margin-top: 60px;
+    }
+}
+
+.bannerWrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 $spacer-base;
+}
+
+.bannerText {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: end;
+    padding: $spacer-base $spacer-base $spacer-base 0px;
+    @media (max-width: $xl) {
+        padding: $spacer-xs $spacer-xs $spacer-xs 0px;
+    }
+    @media (max-width: $lg) {
+        align-items: center;
+        padding: $spacer-xs 0px;
+    }
+    @media (max-width: $sm) {
+        padding: $spacer-xxs 0px;
+    }
+}
+
+.svgWrap {
+    transform: scale(1);
+    @media (max-width: $xl) {
+        transform: scale(0.8);
+    }
+}
+
+.title {
+    text-align: right;
+    font-weight: 600;
+    font-size: $fs-xxl;
+    background: $text-gradient;
+    color: transparent;
+    -webkit-background-clip: text;
+    background-clip: text;
+    margin-bottom: $spacer-s;
+    @media (max-width: $xxl) {
+        font-size: 60px;
+    }
+    @media (max-width: $xl) {
+        font-size: 52px;
+    }
+    @media (max-width: $lg) {
+        font-size: 44px;
+        text-align: center;
+    }
+    @media (max-width: $sm) {
+        font-size: 32px;
+    }
+}
+
+.subTitle {
+    font-weight: 300;
     text-align: center;
+    width: 400px;
+    line-height: 187%;
+    font-size: $fs-m;
+    color: var(--primary-color);
+
+    @media (max-width: $xxl) {
+        font-size: 24px;
+    }
+    @media (max-width: $xl) {
+        font-size: 20px;
+        width: 300px;
+    }
+    @media (max-width: $lg) {
+        font-size: 18px;
+    }
+    @media (max-width: $sm) {
+        font-size: 16px;
+    }
+}
+
+.bannerLogo {
+    @media (max-width: $md) {
+        display: none;
+    }
 }
