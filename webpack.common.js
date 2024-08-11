@@ -52,9 +52,6 @@ export default {
             },
             { test: /\.(html)$/, use: ['html-loader'] },
             {
-                test: /\.(png|jpe?g|gif|svg|webp|ico)$/i,
-            },
-            {
                 test: /\.(woff2?|eot|ttf|otf)$/i,
                 type: 'asset/resource',
             },
@@ -72,6 +69,20 @@ export default {
                 test: /\.tsx?$/,
                 use: 'ts-loader',
                 exclude: /node_modules/,
+            },
+            {
+                test: /\.svg$/,
+                use: [
+                    {
+                        loader: 'babel-loader',
+                    },
+                    {
+                        loader: 'react-svg-loader',
+                        options: {
+                            jsx: true, // true outputs JSX tags
+                        },
+                    },
+                ],
             },
         ],
     },

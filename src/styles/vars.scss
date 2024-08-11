@@ -12,12 +12,14 @@ $spacer-m: $spacer-base;
 $spacer-l: 1.5 * $spacer-base;
 $spacer-xl: 2 * $spacer-base;
 $spacer-xxl: 2.25 * $spacer-base;
+$spacer-xxxl: 3.5 * $spacer-base;
 
 // шрифты
 $fs-base: 28px;
 
-$fs-xxs: 18px;
-$fs-xs: 20px;
+$fs-xxxs: 12px;
+$fs-xxs: 14px;
+$fs-xs: 18px;
 $fs-s: 24px;
 $fs-m: $fs-base;
 $fs-l: 32px;
@@ -37,14 +39,20 @@ $black: #000;
 $card-bg: #202025;
 $card-border: #474747;
 $search-bg: #1b2028;
-$gradient: linear-gradient(92deg, #00ce2c 0%, #aedf23 49.26%, #a3dc00 100%);
+$text-gradient: linear-gradient(92deg, #00ce2c 0%, #aedf23 50%, #a3dc00 100%);
+$bg-gradient: linear-gradient(
+    225deg,
+    #12121220 0%,
+    #2479404f 50%,
+    #12121220 100%
+);
 
 // breakpoints
 $sm: 576px;
 $md: 768px;
 $lg: 992px;
 $xl: 1100px;
-$xxl: 1225px;
+$xxl: 1200px;
 
 //шрифт
-$ff: Helvetica;
+$ff: Poppins, sans-serif;
