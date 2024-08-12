@@ -3,6 +3,7 @@ import { Outlet } from 'react-router-dom'
 
 import * as styles from './styles.module.scss'
 
+import { Footer } from '@/components/Footer'
 import { Header } from '@/components/Header'
 import { ThemeContext } from '@/providers/ThemeProvider/ThemeProvier'
 
@@ -17,6 +18,7 @@ const RootRoute = () => {
         <div className={styles.container}>
             <Header />
             <Outlet />
+            <Footer />
         </div>
     )
 }
