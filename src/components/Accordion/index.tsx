@@ -28,7 +28,9 @@ export const Accordion = ({ title, textData, theme }: AccordionProps) => {
                 className={isOpen ? styles.visibleContent : styles.hideContent}
             >
                 {textData.map((text) => (
-                    <p className={styles.text}>{text}</p>
+                    <p key={text} className={styles.text}>
+                        {text}
+                    </p>
                 ))}
             </div>
         </div>

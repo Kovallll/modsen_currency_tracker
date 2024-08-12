@@ -1,0 +1,62 @@
+@import '../../styles/vars.scss';
+
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.circle {
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+    background: #00bc4f;
+    margin-right: $spacer-m;
+    animation: glowing 3300ms infinite;
+
+    @media (max-width: $lg) {
+        height: 18px;
+        width: 18px;
+        margin-right: $spacer-s;
+    }
+    @media (max-width: $sm) {
+        height: 16px;
+        width: 16px;
+        margin-right: $spacer-xs;
+    }
+}
+
+@keyframes glowing {
+    0% {
+        box-shadow:
+            1px 0px 15px #017c34,
+            -1px 0px 15px #017c34;
+    }
+    50% {
+        box-shadow:
+            1px 0px 15px #02c352,
+            -1px 0px 15px #02c352;
+    }
+    100% {
+        box-shadow:
+            1px 0px 15px #03f869,
+            -1px 0px 15px #03f869;
+    }
+}
+
+.text {
+    color: var(--primary-color);
+
+    @media (max-width: $xxl) {
+        font-size: $fs-m;
+    }
+    @media (max-width: $xl) {
+        font-size: $fs-s;
+    }
+    @media (max-width: $lg) {
+        font-size: $fs-xs;
+    }
+    @media (max-width: $sm) {
+        font-size: $fs-xxs;
+    }
+}
