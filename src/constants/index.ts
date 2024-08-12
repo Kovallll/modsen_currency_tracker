@@ -7,7 +7,7 @@ export enum Paths {
 }
 
 export const footerLinks = [
-    { title: 'General', links: ['Market', 'Service'] },
-    { title: 'Product', links: ['Sparks', 'Snaps'] },
-    { title: 'Community', links: ['Ideas', 'Streams'] },
+    { id: 1, title: 'General', links: ['Market', 'Service'] },
+    { id: 2, title: 'Product', links: ['Sparks', 'Snaps'] },
+    { id: 3, title: 'Community', links: ['Ideas', 'Streams'] },
 ]

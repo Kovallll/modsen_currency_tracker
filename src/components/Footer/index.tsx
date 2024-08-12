@@ -41,11 +41,15 @@ export const Footer = () => {
                     </div>
                     {width >= 768 ? (
                         <div className={styles.linksBlock}>
-                            {footerLinks.map(({ title, links }) => (
-                                <div className={styles.linksColumn}>
+                            {footerLinks.map(({ id, title, links }) => (
+                                <div key={id} className={styles.linksColumn}>
                                     <p className={styles.title}>{title}</p>
                                     {links.map((link) => (
-                                        <Link to="/" className={styles.link}>
+                                        <Link
+                                            key={link}
+                                            to="/"
+                                            className={styles.link}
+                                        >
                                             {link}
                                         </Link>
                                     ))}
@@ -54,8 +58,9 @@ export const Footer = () => {
                         </div>
                     ) : (
                         <div className={styles.accordion}>
-                            {footerLinks.map(({ title, links }) => (
+                            {footerLinks.map(({ id, title, links }) => (
                                 <Accordion
+                                    key={id}
                                     title={title}
                                     textData={links}
                                     theme={theme}
