@@ -1,0 +1,58 @@
+@import '../../styles/vars.scss';
+
+.container {
+    overflow: hidden;
+    width: 360px;
+    border-bottom: 1px solid var(--secondary-color);
+    padding-bottom: $spacer-xxs;
+}
+
+.visibleContent {
+    transition:
+        max-height 4s,
+        padding 0.4s;
+    display: flex;
+    flex-direction: column;
+    max-height: 100vh;
+    padding-top: $spacer-xxs;
+    padding-left: $spacer-s;
+    cursor: pointer;
+}
+
+.hideContent {
+    transition:
+        max-height 1s,
+        padding 0.5s;
+    padding: 0 $spacer-s;
+    max-height: 0;
+}
+
+.head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.title {
+    font-size: $fs-s;
+    color: var(--primary-color);
+}
+.openIcon {
+    transition: all 0.5s;
+    width: 40px;
+    height: 40px;
+}
+
+.closeIcon {
+    transition: all 0.5s;
+    transform: rotate(180deg);
+    width: 40px;
+    height: 40px;
+}
+
+.text {
+    padding-top: 2px;
+    margin-bottom: $spacer-xs;
+    font-size: $fs-xs;
+    color: var(--primary-color);
+}
