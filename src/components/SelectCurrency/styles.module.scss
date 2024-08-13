@@ -1,0 +1,16 @@
+@import '../../styles/vars.scss';
+
+.container {
+    display: flex;
+    width: 100%;
+    background: var(--card-background-color);
+    border: none;
+    font-size: $fs-m;
+    color: var(--primary-color);
+    @media (max-width: $md) {
+        font-size: $fs-s;
+    }
+    @media (max-width: $sm) {
+        font-size: $fs-xs;
+    }
+}

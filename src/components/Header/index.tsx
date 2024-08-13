@@ -1,28 +1,21 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import axios from 'axios'
 
 import { LastUpdated } from '../LastUpdated'
 import { ToggleThemeButton } from '../ToggleThemeButton'
 import * as styles from './styles.module.scss'
 
+import { getLastUpdated } from '@/api'
 import Logo from '@/assets/icons/logo.svg'
-import { Paths } from '@/constants'
-
-const response =
-    'https://api.currencyapi.com/v3/latest?apikey=cur_live_5KKBeFRlkcERd1QQC93qEgq1112YvvAsScAyp16M&currencies=EUR%2CUSD%2CCAD%2CAFN%2CRUB%2CBYN'
+import { defaultLastUpdate, Paths } from '@/constants'
 
 export const Header = () => {
-    const [lastUpdated, setLastUpdated] = useState({ last_updated_at: '' })
+    const [lastUpdated, setLastUpdated] = useState(defaultLastUpdate)
 
     useEffect(() => {
-        async function getData() {
-            try {
-                const { data } = await axios.get(response)
-                setLastUpdated(data.meta)
-            } catch (error) {
-                console.log(error)
-            }
+        const getData = async () => {
+            const data = await getLastUpdated()
+            setLastUpdated(data)
         }
         getData()
     }, [])

@@ -6,8 +6,8 @@
     --primary-color: #{$primary-dark};
     --secondary-color: #{$secondary-dark};
 
-    --card-background-color: #{$card-bg};
-    --card-border: 2px solid #{$card-border};
+    --card-background-color: #{$card-bg-dark};
+    --card-border: 2px solid #{$card-border-dark};
     --card-border-radius: 8px;
 
     --header-background-color: #{$black};
@@ -22,8 +22,8 @@
     --primary-color: #{$primary-light};
     --secondary-color: #{$secondary-light};
 
-    --card-background-color: #{$card-bg};
-    --card-border: 2px solid #{$card-border};
+    --card-background-color: #{$card-bg-light};
+    --card-border: 2px solid #{$card-border-light};
     --card-border-radius: 8px;
 
     --header-background-color: #{$white};
