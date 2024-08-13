@@ -17,7 +17,9 @@ const RootRoute = () => {
     return (
         <div className={styles.container}>
             <Header />
-            <Outlet />
+            <div className={styles.content}>
+                <Outlet />
+            </div>
             <Footer />
         </div>
     )
