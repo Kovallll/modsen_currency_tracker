@@ -32,15 +32,25 @@
             1px 0px 15px #017c34,
             -1px 0px 15px #017c34;
     }
-    50% {
+    25% {
         box-shadow:
             1px 0px 15px #02c352,
             -1px 0px 15px #02c352;
     }
-    100% {
+    50% {
         box-shadow:
             1px 0px 15px #03f869,
             -1px 0px 15px #03f869;
+    }
+    75% {
+        box-shadow:
+            1px 0px 15px #03f869,
+            -1px 0px 15px #03f869;
+    }
+    100% {
+        box-shadow:
+            1px 0px 15px #017c34,
+            -1px 0px 15px #017c34;
     }
 }
 

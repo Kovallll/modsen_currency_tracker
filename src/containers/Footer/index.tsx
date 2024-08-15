@@ -1,12 +1,12 @@
 import { useContext, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 
-import { Accordion } from '../Accordion'
 import * as styles from './styles.module.scss'
 
 import Logo from '@/assets/icons/logo.svg'
+import { Accordion } from '@/components/Accordion'
 import { footerLinks } from '@/constants'
-import { ThemeContext } from '@/providers/ThemeProvider/ThemeProvier'
+import { ThemeContext } from '@/providers/ThemeProvider'
 
 export const Footer = () => {
     const [width, setWidth] = useState(window.innerWidth)

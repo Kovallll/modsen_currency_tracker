@@ -1,9 +1,14 @@
 import * as styles from './styles.module.scss'
 
-export interface SelectCurrencyProps {
+export interface SelectCurrencyProps
+    extends React.SelectHTMLAttributes<HTMLSelectElement> {
     children: React.ReactNode
 }
 
-export const SelectCurrency = ({ children }: SelectCurrencyProps) => {
-    return <select className={styles.container}>{children}</select>
+export const SelectCurrency = ({ children, ...props }: SelectCurrencyProps) => {
+    return (
+        <select {...props} className={styles.container}>
+            {children}
+        </select>
+    )
 }

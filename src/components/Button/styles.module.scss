@@ -1,11 +1,15 @@
 @import '../../styles/vars.scss';
 
-.container {
-    display: flex;
+.button {
     width: 100%;
-    border: none;
-    font-size: $fs-m;
+    background: var(--background-color);
     color: var(--primary-color);
+    border: 1px solid var(--secondary-color);
+    border-radius: 12px;
+    font-size: $fs-l;
+    @media (max-width: $lg) {
+        font-size: $fs-m;
+    }
     @media (max-width: $md) {
         font-size: $fs-s;
     }

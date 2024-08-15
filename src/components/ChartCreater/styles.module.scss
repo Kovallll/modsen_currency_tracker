@@ -1,0 +1,36 @@
+@import '../../styles/vars.scss';
+
+.container {
+    display: flex;
+    flex-direction: column;
+    margin: $spacer-m 0;
+    max-width: 100%;
+    width: 100%;
+}
+
+.inputs {
+    display: flex;
+    flex-direction: column;
+    max-height: 350px;
+    overflow-y: auto;
+    &::-webkit-scrollbar {
+        width: 10px; /* ширина scrollbar */
+    }
+    &::-webkit-scrollbar-track {
+        background: var(--background-color); /* цвет дорожки */
+    }
+    &::-webkit-scrollbar-thumb {
+        background-color: var(--primary-color); /* цвет плашки */
+        border-radius: 20px; /* закругления плашки */
+        border: 3px solid var(--secondary-color); /* padding вокруг плашки */
+    }
+}
+
+.buttons {
+    display: flex;
+    justify-content: space-between;
+}
+
+.addButton {
+    margin-right: $spacer-m;
+}

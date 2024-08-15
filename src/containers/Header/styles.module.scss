@@ -89,25 +89,25 @@
     align-items: center;
     padding: 0 $spacer-xxs;
     a {
-        padding-left: $spacer-xxxl;
+        margin-left: $spacer-xxxl;
         &:first-child {
-            padding-left: 0;
+            margin-left: 0;
         }
 
         @media (max-width: $xxl) {
-            padding-left: $spacer-xxl;
+            margin-left: $spacer-xxl;
         }
         @media (max-width: $xl) {
-            padding-left: $spacer-xl;
+            margin-left: $spacer-xl;
         }
         @media (max-width: $lg) {
-            padding-left: $spacer-m;
+            margin-left: $spacer-m;
         }
         @media (max-width: $md) {
-            padding-left: $spacer-s;
+            margin-left: $spacer-s;
         }
         @media (max-width: $sm) {
-            padding-left: $spacer-xxs;
+            margin-left: $spacer-xxs;
         }
     }
 }
