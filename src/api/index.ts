@@ -15,13 +15,14 @@ import {
     LastUpdated,
     LastUpdatedData,
 } from '@/types'
+import { getDateTimer } from '@/utils'
 
 export const getAllAssets = async () => {
     try {
         const data: CurrencyAssetsData[] = JSON.parse(
             localStorage.getItem('assetsData') ?? JSON.stringify(null)
         )
-        if (data !== null) {
+        if (data !== null && getDateTimer()) {
             return data
         } else {
             const data = await axios.get<CurrencyAssetsData[]>(responseAssets)
@@ -37,7 +38,12 @@ export const getAllAssets = async () => {
                         data_end: item.data_end ?? 'none',
                     }
                 })
+
             localStorage.setItem('assetsData', JSON.stringify(response))
+            localStorage.setItem(
+                'assetsTimer',
+                JSON.stringify(new Date().getDate())
+            )
             return response
         }
     } catch (error) {
@@ -51,12 +57,16 @@ export const getLastUpdated = async () => {
         const data: LastUpdated = JSON.parse(
             localStorage.getItem('lastUpdated') ?? JSON.stringify(null)
         )
-        if (data !== null) {
+        if (data !== null && getDateTimer()) {
             return data
         } else {
             const { data } =
                 await axios.get<LastUpdatedData>(responseLastUpdated)
             localStorage.setItem('lastUpdated', JSON.stringify(data.meta))
+            localStorage.setItem(
+                'assetsTimer',
+                JSON.stringify(new Date().getDate())
+            )
             return data.meta
         }
     } catch (error) {
@@ -73,7 +83,7 @@ export const getAssetRate = async (assetId: Currencies) => {
         const currency = data.find(
             (currency) => currency.asset_id_base === assetId
         )
-        if (currency) {
+        if (currency && getDateTimer()) {
             return currency
         } else {
             const { data } = await axios.get<CurrencyRateData>(
@@ -85,6 +95,10 @@ export const getAssetRate = async (assetId: Currencies) => {
             localStorage.setItem(
                 'assetRate',
                 JSON.stringify([...localStorageData, data])
+            )
+            localStorage.setItem(
+                'assetsTimer',
+                JSON.stringify(new Date().getDate())
             )
             return data
         }

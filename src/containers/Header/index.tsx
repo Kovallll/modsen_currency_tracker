@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 
-import { LastUpdated } from '../LastUpdated'
-import { ToggleThemeButton } from '../ToggleThemeButton'
 import * as styles from './styles.module.scss'
 
 import { getLastUpdated } from '@/api'
 import Logo from '@/assets/icons/logo.svg'
+import { LastUpdated } from '@/components/LastUpdated'
+import { ToggleThemeButton } from '@/components/ToggleThemeButton'
 import { defaultLastUpdate, Paths } from '@/constants'
 
 export const Header = () => {

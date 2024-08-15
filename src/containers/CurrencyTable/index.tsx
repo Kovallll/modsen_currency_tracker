@@ -1,6 +1,6 @@
-import { CurrencyCard } from '../CurrencyCard'
 import * as styles from './styles.module.scss'
 
+import { CurrencyCard } from '@/components/CurrencyCard'
 import { CurrencyAssetsData } from '@/types'
 
 interface CurrencyTableProps {

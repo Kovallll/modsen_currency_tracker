@@ -10,5 +10,6 @@
 .content {
     display: flex;
     justify-content: center;
-    min-width: $max-w;
+    width: 100%;
+    max-width: $max-w;
 }

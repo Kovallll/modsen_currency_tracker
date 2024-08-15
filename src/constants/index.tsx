@@ -8,6 +8,7 @@ import Libra from '@/assets/currencyIcons/Libra Icon.svg'
 import Peso from '@/assets/currencyIcons/Peso Argentino Icon.svg'
 import Won from '@/assets/currencyIcons/Won Icon.svg'
 import Yen from '@/assets/currencyIcons/Yen Icon.svg'
+import { CurrencyAssetsData } from '@/types'
 
 export enum Currencies {
     Bitcoin = 'BTC',
@@ -159,6 +160,13 @@ export const getResponseAssetRate = (assetId: Currencies) => {
     return `${responseAssetRate}/${assetId}?apikey=${apikey}&filter_asset_id=${Currencies.AustralianDollar};${Currencies.Bitcoin};${Currencies.Bovespa};${Currencies.CanadianDollar};${Currencies.Dollar};${Currencies.Euro};${Currencies.Libra};${Currencies.Peso};${Currencies.Won};${Currencies.YEN};`
 }
 
+export const getResponseTimeseriesData = (
+    assetIdBase: Currencies,
+    assetIdQuote: Currencies
+) => {
+    return `${responseAssetRate}/${assetIdBase}/${assetIdQuote}/history?apikey=${apikey}`
+}
+
 export const defaultRate = {
     asset_id_base: Currencies.Dollar,
     rates: [{ time: '', asset_id_quote: '', rate: 0 }],
@@ -166,13 +174,13 @@ export const defaultRate = {
 
 export const defaultLastUpdate = { last_updated_at: '00' }
 
-export const defaultAllAssets = [
-    {
-        asset_id: Currencies.Dollar,
-        name: '',
-        data_symbols_count: 0,
-        price_usd: 0,
-        data_start: '',
-        data_end: '',
-    },
-]
+export const defaultAllAssets: CurrencyAssetsData = {
+    asset_id: Currencies.Dollar,
+    name: '',
+    data_symbols_count: 0,
+    price_usd: 0,
+    data_start: '',
+    data_end: '',
+}
+
+export const msInDay = 86400000

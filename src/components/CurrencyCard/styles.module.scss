@@ -10,6 +10,12 @@
     padding: $spacer-s;
     border: var(--card-border);
     border-radius: 10px;
+    cursor: pointer;
+    transition: transform 0.5s;
+    &:hover {
+        transform: scale(1.1);
+    }
+
     @media (max-width: $sm) {
         width: 370px;
         height: 90px;

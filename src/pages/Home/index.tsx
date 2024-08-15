@@ -1,22 +1,11 @@
-import { useEffect, useState } from 'react'
-
 import * as styles from './styles.module.scss'
 
-import { getAllAssets } from '@/api'
-import { CurrencyTable } from '@/components/CurrencyTable'
-import { defaultAllAssets } from '@/constants'
-import { CurrencyAssetsData } from '@/types'
+import { CurrencyTable } from '@/containers/CurrencyTable'
 
 const HomePage = () => {
-    const [data, setData] = useState<CurrencyAssetsData[]>(defaultAllAssets)
-
-    useEffect(() => {
-        const getData = async () => {
-            const data = await getAllAssets()
-            setData(data)
-        }
-        getData()
-    }, [])
+    const data = JSON.parse(
+        localStorage.getItem('assetsData') ?? JSON.stringify([])
+    )
     return (
         <div className={styles.container}>
             <CurrencyTable currencyData={data} title="Stocks" />

@@ -77,6 +77,9 @@
 .currencies {
     width: 100%;
     overflow: hidden;
+    select {
+        background: var(--card-background-color);
+    }
 }
 
 .description {
