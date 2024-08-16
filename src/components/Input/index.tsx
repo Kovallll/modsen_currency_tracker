@@ -3,7 +3,7 @@ import { PureComponent } from 'react'
 import * as styles from './styles.module.scss'
 
 interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
-    value: number
+    value: string
     handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void
     text?: string
     type?: string

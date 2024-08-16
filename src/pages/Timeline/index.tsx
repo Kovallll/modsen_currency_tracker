@@ -36,10 +36,10 @@ class TimelinePage extends Component<TimelinePageProps, TimelinePageState> {
             isInView: false,
             chartData: [
                 {
-                    open: 0,
-                    close: 0,
-                    high: 0,
-                    low: 0,
+                    open: '',
+                    close: '',
+                    high: '',
+                    low: '',
                     day: 1,
                 },
             ],
@@ -116,16 +116,31 @@ class TimelinePage extends Component<TimelinePageProps, TimelinePageState> {
             chartData: [
                 ...this.state.chartData,
                 {
-                    open: 0,
-                    close: 0,
-                    high: 0,
-                    low: 0,
+                    open: '',
+                    close: '',
+                    high: '',
+                    low: '',
                     day: this.state.day,
                 },
             ],
             day: this.state.day + 1,
             isCreateChart: false,
         })
+    }
+
+    transformExponentNumber = (value: string) => {
+        const NumberWithERegex = /(\d+)e(-?\d+)?/
+        const match = value.match(NumberWithERegex)
+        if (match) {
+            const number = match[1]
+            const exponent = match[2] ?? 1
+            console.log(exponent, 'exponent')
+            const result = Number(number) ** Number(exponent)
+            console.log(result, 'result')
+            return result
+        } else {
+            return Number(value)
+        }
     }
 
     render() {
@@ -137,12 +152,16 @@ class TimelinePage extends Component<TimelinePageProps, TimelinePageState> {
             ) ?? defaultAllAssets
 
         const data = this.state.chartData.map((item) => {
+            const o = this.transformExponentNumber(item.open)
+            const c = this.transformExponentNumber(item.close)
+            const l = this.transformExponentNumber(item.low)
+            const h = this.transformExponentNumber(item.high)
             return {
-                x: item.day * msInDay + dateNow,
-                o: item.open,
-                h: item.high,
-                c: item.close,
-                l: item.low,
+                x: +item.day * msInDay + dateNow,
+                o: o,
+                h: h,
+                c: c,
+                l: l,
             }
         })
         return (
