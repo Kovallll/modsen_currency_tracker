@@ -1,0 +1,34 @@
+@import '../../styles/vars.scss';
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-width: 100%;
+}
+
+.text {
+    color: var(--primary-color);
+    margin-bottom: $spacer-xs;
+    text-align: center;
+    font-size: $fs-xl;
+    @media (max-width: $xl) {
+        font-size: $fs-l;
+    }
+    @media (max-width: $lg) {
+        font-size: $fs-m;
+    }
+    @media (max-width: $md) {
+        font-size: $fs-s;
+    }
+    @media (max-width: $sm) {
+        font-size: $fs-xxs;
+    }
+}
+
+.search {
+    width: 100%;
+    background: #1b2028;
+    border: none;
+}

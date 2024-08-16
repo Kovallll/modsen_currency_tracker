@@ -3,8 +3,8 @@ import { Outlet } from 'react-router-dom'
 
 import * as styles from './styles.module.scss'
 
-import { Footer } from '@/containers/Footer'
-import { Header } from '@/containers/Header'
+import { Footer } from '@/components/Footer'
+import { Header } from '@/components/Header'
 import { ThemeContext } from '@/providers/ThemeProvider'
 
 const RootRoute = () => {

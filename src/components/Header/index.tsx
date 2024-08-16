@@ -40,9 +40,9 @@ export const Header = () => {
                         <Link className={styles.link} to={Paths.BankCard}>
                             BankCard
                         </Link>
-                        <Link className={styles.link} to={Paths.Contacts}>
+                        <a className={styles.link} href={Paths.Contacts}>
                             Contacts
-                        </Link>
+                        </a>
                     </div>
                     <div className={styles.toggleButton}>
                         <ToggleThemeButton />

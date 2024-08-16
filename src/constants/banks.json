@@ -1,0 +1,49 @@
+{
+    "features": [
+        {
+            "type": "Feature",
+            "properties": {
+                "title": "Prior Bank",
+                "description": "Location: Minsk",
+                "currencies": ["Euro"]
+            },
+            "geometry": {
+                "coordinates": {
+                    "lng": 27.655596376281522,
+                    "lat": 53.93457241600598
+                },
+                "type": "Point"
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "title": "Prior Bank",
+                "description": "Location: Minsk",
+                "currencies": ["USD"]
+            },
+            "geometry": {
+                "coordinates": {
+                    "lng": 27.558495923613066,
+                    "lat": 53.92159710132745
+                },
+                "type": "Point"
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "title": "Alfa Bank",
+                "description": "Location: Minsk",
+                "currencies": ["USD", "Euro", "AUD"]
+            },
+            "geometry": {
+                "coordinates": {
+                    "lng": 27.612269086933736,
+                    "lat": 53.92435189039543
+                },
+                "type": "Point"
+            }
+        }
+    ]
+}

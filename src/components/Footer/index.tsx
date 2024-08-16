@@ -21,7 +21,7 @@ export const Footer = () => {
     }, [])
 
     return (
-        <footer className={styles.container}>
+        <footer className={styles.container} id="contacts">
             <div className={styles.content}>
                 <div className={styles.info}>
                     <div className={styles.description}>

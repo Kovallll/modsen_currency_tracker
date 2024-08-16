@@ -50,32 +50,33 @@ export class InputsChart extends Component<InputsChartProps> {
     }
 
     render() {
+        const { data } = this.props
         return (
             <div className={styles.container}>
                 <Input
                     handleChange={this.handleChangeOpen}
-                    value={this.props.data.open}
+                    value={data.open}
                     text="open"
                     type="number"
                     className={styles.input}
                 />
                 <Input
                     handleChange={this.handleChangeClose}
-                    value={this.props.data.close}
+                    value={data.close}
                     text="close"
                     type="number"
                     className={styles.input}
                 />
                 <Input
                     handleChange={this.handleChangeLow}
-                    value={this.props.data.low}
+                    value={data.low}
                     text="low"
                     type="number"
                     className={styles.input}
                 />
                 <Input
                     handleChange={this.handleChangeHigh}
-                    value={this.props.data.high}
+                    value={data.high}
                     text="high"
                     type="number"
                     className={styles.input}

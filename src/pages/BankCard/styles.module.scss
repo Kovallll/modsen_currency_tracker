@@ -1,4 +1,58 @@
+@import '../../styles/vars.scss';
+
 .container {
     display: flex;
     align-items: center;
+    flex-direction: column;
+    margin: $spacer-xl 0;
+}
+
+.search {
+    width: 60%;
+    margin-bottom: $spacer-l;
+    @media (max-width: $xl) {
+        margin-bottom: $spacer-m;
+    }
+
+    @media (max-width: $md) {
+        margin-bottom: $spacer-s;
+    }
+    @media (max-width: $sm) {
+        margin-bottom: $spacer-xs;
+    }
+}
+
+.mapContainer {
+    height: 460px;
+    width: 1380px;
+    border-radius: 48px;
+
+    @media (max-width: $xxxl) {
+        height: 380px;
+        width: 1140px;
+    }
+    @media (max-width: $xxl) {
+        height: 350px;
+        width: 1050px;
+        border-radius: 32px;
+    }
+    @media (max-width: $xl) {
+        height: 310px;
+        width: 930px;
+    }
+    @media (max-width: $lg) {
+        height: 240px;
+        width: 720px;
+        border-radius: 24px;
+    }
+
+    @media (max-width: $md) {
+        height: 170px;
+        width: 510px;
+    }
+    @media (max-width: $sm) {
+        height: 120px;
+        width: 360px;
+        border-radius: 12px;
+    }
 }
