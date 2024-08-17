@@ -14,21 +14,23 @@ interface CandlestickChartProps {
 }
 
 export class CandlestickChart extends Component<CandlestickChartProps> {
-    private ctx: React.RefObject<HTMLCanvasElement>
+    private chartRef: React.RefObject<HTMLCanvasElement>
     constructor(props: CandlestickChartProps) {
         super(props)
-        this.ctx = createRef()
+        this.chartRef = createRef()
         Chart.register(CandlestickController, CandlestickElement)
     }
 
     componentDidMount(): void {
-        new Chart(this.ctx.current as unknown as ChartItem, {
+        const { data } = this.props
+
+        new Chart(this.chartRef.current as unknown as ChartItem, {
             type: 'candlestick' as keyof ChartTypeRegistry,
             data: {
                 datasets: [
                     {
                         label: 'CHRT - Chart.js Corporation',
-                        data: this.props.data,
+                        data: data,
                         backgroundColor: 'rgba(0, 123, 255, 0.5)',
                         borderColor: 'rgba(0, 123, 255, 1)',
                         borderWidth: 1,
@@ -38,6 +40,6 @@ export class CandlestickChart extends Component<CandlestickChartProps> {
         })
     }
     render() {
-        return <canvas className={styles.chart} ref={this.ctx}></canvas>
+        return <canvas className={styles.chart} ref={this.chartRef}></canvas>
     }
 }

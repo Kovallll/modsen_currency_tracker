@@ -1,6 +1,6 @@
 import * as styles from './styles.module.scss'
 
-import { CurrencyTable } from '@/containers/CurrencyTable'
+import { CurrencyTable } from '@/components/CurrencyTable'
 
 const HomePage = () => {
     const data = JSON.parse(

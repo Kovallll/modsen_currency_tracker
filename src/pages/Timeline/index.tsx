@@ -4,9 +4,9 @@ import { createPortal } from 'react-dom'
 import * as styles from './styles.module.scss'
 
 import { ChartCreater } from '@/components/ChartCreater'
+import { ChartWithInfo } from '@/components/ChartWithInfo'
 import { SelectTimeline } from '@/components/SelectTimeline'
-import { defaultAllAssets, msInDay } from '@/constants'
-import { ChartWithInfo } from '@/containers/ChartWithInfo'
+import { dateNow, defaultAllAssets, msInDay } from '@/constants'
 import { CurrencyAssetsData, InputData } from '@/types'
 
 interface TimelinePageState {
@@ -16,7 +16,6 @@ interface TimelinePageState {
     chartData: InputData[]
     day: number
     isInView: boolean
-    notify: null | ReactElement
 }
 
 type TimelinePageProps = object
@@ -24,11 +23,13 @@ type TimelinePageProps = object
 class TimelinePage extends Component<TimelinePageProps, TimelinePageState> {
     private ref: React.RefObject<HTMLSelectElement>
     private chartRef: React.RefObject<HTMLDivElement>
+    private notify: ReactElement | null
 
     constructor(props: TimelinePageProps) {
         super(props)
         this.ref = createRef()
         this.chartRef = createRef()
+        this.notify = <p className={styles.notify}>Chart successful created</p>
         this.state = {
             assetsData: JSON.parse(localStorage.getItem('assetsData') ?? '[]'),
             currentCurrencyId: '',
@@ -43,7 +44,6 @@ class TimelinePage extends Component<TimelinePageProps, TimelinePageState> {
                     day: 1,
                 },
             ],
-            notify: <p className={styles.notify}>Chart successful created</p>,
             day: 2,
         }
     }
@@ -65,7 +65,8 @@ class TimelinePage extends Component<TimelinePageProps, TimelinePageState> {
         }
         if (this.state.isInView) {
             setTimeout(() => {
-                this.setState({ isInView: false, notify: null })
+                this.setState({ isInView: false })
+                this.notify = null
             }, 2000)
         }
     }
@@ -85,14 +86,16 @@ class TimelinePage extends Component<TimelinePageProps, TimelinePageState> {
     handleCreateChart = () => {
         this.setState({
             isCreateChart: true,
-            notify: <p className={styles.notify}>Chart successful created</p>,
         })
+        this.notify = <p className={styles.notify}>Chart successful created</p>
     }
 
     handleDeleteInputs = (day: number) => {
-        if (this.state.chartData.length !== 1) {
+        const { chartData } = this.state
+
+        if (chartData.length !== 1) {
             this.setState({
-                chartData: this.state.chartData.filter((el) => el.day !== day),
+                chartData: chartData.filter((el) => el.day !== day),
                 isCreateChart: false,
             })
         }
@@ -103,40 +106,48 @@ class TimelinePage extends Component<TimelinePageProps, TimelinePageState> {
             const index = state.chartData.findIndex(
                 (item) => item.day === data.day
             )
-            state.chartData.splice(index, 1, data)
+            const dataArr = state.chartData
+            dataArr.splice(index, 1, data)
             return {
-                chartData: [...state.chartData],
+                chartData: [...dataArr],
                 isCreateChart: false,
             }
         })
     }
 
     handleAddInputs = () => {
+        const { chartData, day } = this.state
+
         this.setState({
             chartData: [
-                ...this.state.chartData,
+                ...chartData,
                 {
                     open: 0,
                     close: 0,
                     high: 0,
                     low: 0,
-                    day: this.state.day,
+                    day: day,
                 },
             ],
-            day: this.state.day + 1,
+            day: day + 1,
             isCreateChart: false,
         })
     }
 
     render() {
-        const dateNow = new Date().getTime()
-        console.log(this.state.chartData, 'chart')
-        const currentCurrencyChart =
-            this.state.assetsData.find(
-                (item) => item.asset_id === this.state.currentCurrencyId
-            ) ?? defaultAllAssets
+        const {
+            assetsData,
+            currentCurrencyId,
+            chartData,
+            isInView,
+            isCreateChart,
+        } = this.state
 
-        const data = this.state.chartData.map((item) => {
+        const currentCurrencyChart =
+            assetsData.find((item) => item.asset_id === currentCurrencyId) ??
+            defaultAllAssets
+
+        const data = chartData.map((item) => {
             return {
                 x: item.day * msInDay + dateNow,
                 o: item.open,
@@ -149,27 +160,26 @@ class TimelinePage extends Component<TimelinePageProps, TimelinePageState> {
             <div className={styles.container}>
                 <div className={styles.selectWrap}>
                     <SelectTimeline
-                        assetsData={this.state.assetsData}
+                        assetsData={assetsData}
                         handleUpdateCurrency={this.handleUpdateCurrency}
                         selectRef={this.ref}
                     />
                 </div>
                 <ChartCreater
-                    chartData={this.state.chartData}
+                    chartData={chartData}
                     handleAddInputs={this.handleAddInputs}
                     handleCreateChart={this.handleCreateChart}
                     handleDeleteInputs={this.handleDeleteInputs}
                     handleUpdateChartData={this.handleUpdateChartData}
                 />
-                {this.state.isCreateChart && (
+                {isCreateChart && (
                     <ChartWithInfo
                         chartRef={this.chartRef}
                         currentCurrencyChart={currentCurrencyChart}
                         data={data}
                     />
                 )}
-                {this.state.isInView &&
-                    createPortal(this.state.notify, document.body)}
+                {isInView && createPortal(this.notify, document.body)}
             </div>
         )
     }

@@ -18,64 +18,75 @@ export class InputsChart extends Component<InputsChartProps> {
     }
 
     handleChangeHigh = (e: React.ChangeEvent<HTMLInputElement>) => {
-        this.props.handleUpdateData({
-            ...this.props.data,
+        const { handleUpdateData, data } = this.props
+
+        handleUpdateData({
+            ...data,
             high: +e.target.value,
         })
     }
 
     handleChangeLow = (e: React.ChangeEvent<HTMLInputElement>) => {
-        this.props.handleUpdateData({
-            ...this.props.data,
+        const { handleUpdateData, data } = this.props
+
+        handleUpdateData({
+            ...data,
             low: +e.target.value,
         })
     }
 
     handleChangeClose = (e: React.ChangeEvent<HTMLInputElement>) => {
-        this.props.handleUpdateData({
-            ...this.props.data,
+        const { handleUpdateData, data } = this.props
+
+        handleUpdateData({
+            ...data,
             close: +e.target.value,
         })
     }
 
     handleChangeOpen = (e: React.ChangeEvent<HTMLInputElement>) => {
-        this.props.handleUpdateData({
-            ...this.props.data,
+        const { handleUpdateData, data } = this.props
+
+        handleUpdateData({
+            ...data,
             open: +e.target.value,
         })
     }
 
     handleDelete = () => {
-        this.props.handleDeleteInputs(this.props.data.day)
+        const { handleDeleteInputs, data } = this.props
+
+        handleDeleteInputs(data.day)
     }
 
     render() {
+        const { data } = this.props
         return (
             <div className={styles.container}>
                 <Input
                     handleChange={this.handleChangeOpen}
-                    value={this.props.data.open}
+                    searchValue={data.open}
                     text="open"
                     type="number"
                     className={styles.input}
                 />
                 <Input
                     handleChange={this.handleChangeClose}
-                    value={this.props.data.close}
+                    searchValue={data.close}
                     text="close"
                     type="number"
                     className={styles.input}
                 />
                 <Input
                     handleChange={this.handleChangeLow}
-                    value={this.props.data.low}
+                    searchValue={data.low}
                     text="low"
                     type="number"
                     className={styles.input}
                 />
                 <Input
                     handleChange={this.handleChangeHigh}
-                    value={this.props.data.high}
+                    searchValue={data.high}
                     text="high"
                     type="number"
                     className={styles.input}
