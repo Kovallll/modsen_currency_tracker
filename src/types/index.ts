@@ -58,9 +58,9 @@ export interface CandlestickChartItem {
 }
 
 export interface InputData {
-    open: number
-    high: number
-    close: number
-    low: number
+    open: string
+    high: string
+    close: string
+    low: string
     day: number
 }

@@ -8,7 +8,11 @@ import { Accordion } from '@/components/Accordion'
 import { footerLinks } from '@/constants'
 import { ThemeContext } from '@/providers/ThemeProvider'
 
-export const Footer = () => {
+interface FooterProps {
+    className?: string
+}
+
+export const Footer = ({ className }: FooterProps) => {
     const [width, setWidth] = useState(window.innerWidth)
     const { theme } = useContext(ThemeContext)
 
@@ -21,7 +25,7 @@ export const Footer = () => {
     }, [])
 
     return (
-        <footer className={styles.container} id="contacts">
+        <footer className={`${styles.container} ${className}`}>
             <div className={styles.content}>
                 <div className={styles.info}>
                     <div className={styles.description}>

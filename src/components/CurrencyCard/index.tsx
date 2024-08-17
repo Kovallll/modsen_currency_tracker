@@ -1,13 +1,14 @@
-import { useState } from 'react'
+import { lazy, Suspense, useState } from 'react'
 import { createPortal } from 'react-dom'
 
-import { CurrencyModal } from '../CurrencyModal'
+import { CurrencyModalLoader } from '../CurrencyModal/Loader'
 import * as styles from './styles.module.scss'
 
 import { currencies } from '@/constants'
 import { CurrencyCardData } from '@/types'
 
-export const CurrencyCard = ({ currency }: CurrencyCardData) => {
+const CurrencyModal = lazy(() => import('../CurrencyModal'))
+const CurrencyCard = ({ currency }: CurrencyCardData) => {
     const [showModal, setShowModal] = useState(false)
 
     const handleShowModal = () => {
@@ -35,13 +36,17 @@ export const CurrencyCard = ({ currency }: CurrencyCardData) => {
             </div>
             {showModal &&
                 createPortal(
-                    <CurrencyModal
-                        onClose={handleShowModal}
-                        description={description}
-                        asset_id={asset_id}
-                    />,
+                    <Suspense fallback={<CurrencyModalLoader />}>
+                        <CurrencyModal
+                            onClose={handleShowModal}
+                            description={description}
+                            asset_id={asset_id}
+                        />
+                    </Suspense>,
                     document.body
                 )}
         </>
     )
 }
+
+export default CurrencyCard

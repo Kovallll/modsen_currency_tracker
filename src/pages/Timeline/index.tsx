@@ -6,7 +6,7 @@ import * as styles from './styles.module.scss'
 import { ChartCreater } from '@/components/ChartCreater'
 import { ChartWithInfo } from '@/components/ChartWithInfo'
 import { SelectTimeline } from '@/components/SelectTimeline'
-import { dateNow, defaultAllAssets, msInDay } from '@/constants'
+import { defaultAllAssets, msInDay } from '@/constants'
 import { CurrencyAssetsData, InputData } from '@/types'
 
 interface TimelinePageState {
@@ -15,66 +15,90 @@ interface TimelinePageState {
     isCreateChart: boolean
     chartData: InputData[]
     day: number
-    isInView: boolean
+    notify: null | ReactElement
 }
 
 type TimelinePageProps = object
 
 class TimelinePage extends Component<TimelinePageProps, TimelinePageState> {
     private ref: React.RefObject<HTMLSelectElement>
-    private chartRef: React.RefObject<HTMLDivElement>
-    private notify: ReactElement | null
+    private createButtonRef: React.RefObject<HTMLButtonElement>
+    private event: Event
+    private notifyTimeout: NodeJS.Timeout | null
 
     constructor(props: TimelinePageProps) {
         super(props)
-        this.ref = createRef()
-        this.chartRef = createRef()
-        this.notify = <p className={styles.notify}>Chart successful created</p>
         this.state = {
             assetsData: JSON.parse(localStorage.getItem('assetsData') ?? '[]'),
             currentCurrencyId: '',
             isCreateChart: false,
-            isInView: false,
             chartData: [
                 {
-                    open: 0,
-                    close: 0,
-                    high: 0,
-                    low: 0,
+                    open: this.getRandomValue(),
+                    close: this.getRandomValue(),
+                    high: this.getRandomValue(),
+                    low: this.getRandomValue(),
                     day: 1,
                 },
             ],
+            notify: null,
             day: 2,
         }
+        this.ref = createRef()
+        this.event = new Event('createChart')
+        this.createButtonRef = createRef()
+        this.notifyTimeout = null
     }
-    observer = new IntersectionObserver(([entry]) => {
-        this.setState({
-            isInView: entry.isIntersecting,
-        })
-    })
 
     componentDidMount() {
         this.setState({
             currentCurrencyId: this.ref.current?.value ?? '',
         })
-    }
-
-    componentDidUpdate() {
-        if (this.chartRef.current) {
-            this.observer.observe(this.chartRef.current)
-        }
-        if (this.state.isInView) {
-            setTimeout(() => {
-                this.setState({ isInView: false })
-                this.notify = null
-            }, 2000)
-        }
+        this.createButtonRef.current?.addEventListener(
+            'createChart',
+            this.handleAddNotify
+        )
     }
 
     componentWillUnmount() {
-        if (this.chartRef.current) {
-            this.observer.unobserve(this.chartRef.current)
+        this.createButtonRef.current?.removeEventListener(
+            'createChart',
+            this.handleAddNotify
+        )
+        clearTimeout(this.notifyTimeout ?? '')
+    }
+
+    getRandomValue = () => {
+        return String(Math.trunc(Math.random() * 10 + 1))
+    }
+
+    handleAddNotify = () => {
+        const { chartData } = this.state
+
+        const isEmpty = chartData.find((item) =>
+            Object.values(item).includes('')
+        )
+
+        if (!isEmpty) {
+            this.setState({
+                isCreateChart: true,
+                notify: (
+                    <p className={styles.seccessNotify}>
+                        Chart successful created
+                    </p>
+                ),
+            })
+        } else {
+            this.setState({
+                notify: (
+                    <p className={styles.errorNotify}>Error: Fill all inputs</p>
+                ),
+            })
         }
+
+        this.notifyTimeout = setTimeout(() => {
+            this.setState({ notify: null })
+        }, 2000)
     }
 
     handleUpdateCurrency = () => {
@@ -84,10 +108,9 @@ class TimelinePage extends Component<TimelinePageProps, TimelinePageState> {
     }
 
     handleCreateChart = () => {
-        this.setState({
-            isCreateChart: true,
-        })
-        this.notify = <p className={styles.notify}>Chart successful created</p>
+        if (!this.state.isCreateChart) {
+            this.createButtonRef.current?.dispatchEvent(this.event)
+        }
     }
 
     handleDeleteInputs = (day: number) => {
@@ -122,11 +145,11 @@ class TimelinePage extends Component<TimelinePageProps, TimelinePageState> {
             chartData: [
                 ...chartData,
                 {
-                    open: 0,
-                    close: 0,
-                    high: 0,
-                    low: 0,
-                    day: day,
+                    open: this.getRandomValue(),
+                    close: this.getRandomValue(),
+                    high: this.getRandomValue(),
+                    low: this.getRandomValue(),
+                    day: this.state.day,
                 },
             ],
             day: day + 1,
@@ -135,25 +158,26 @@ class TimelinePage extends Component<TimelinePageProps, TimelinePageState> {
     }
 
     render() {
-        const {
-            assetsData,
-            currentCurrencyId,
-            chartData,
-            isInView,
-            isCreateChart,
-        } = this.state
+        const { assetsData, currentCurrencyId, chartData, isCreateChart } =
+            this.state
 
         const currentCurrencyChart =
             assetsData.find((item) => item.asset_id === currentCurrencyId) ??
             defaultAllAssets
 
+        const dateNowMs = new Date().getTime()
+
         const data = chartData.map((item) => {
+            const o = Number.parseFloat(item.open)
+            const c = Number.parseFloat(item.close)
+            const l = Number.parseFloat(item.low)
+            const h = Number.parseFloat(item.high)
             return {
-                x: item.day * msInDay + dateNow,
-                o: item.open,
-                h: item.high,
-                c: item.close,
-                l: item.low,
+                x: Number(item.day) * msInDay + dateNowMs,
+                o: o,
+                h: h,
+                c: c,
+                l: l,
             }
         })
         return (
@@ -166,7 +190,8 @@ class TimelinePage extends Component<TimelinePageProps, TimelinePageState> {
                     />
                 </div>
                 <ChartCreater
-                    chartData={chartData}
+                    createButtonRef={this.createButtonRef}
+                    chartData={this.state.chartData}
                     handleAddInputs={this.handleAddInputs}
                     handleCreateChart={this.handleCreateChart}
                     handleDeleteInputs={this.handleDeleteInputs}
@@ -174,12 +199,11 @@ class TimelinePage extends Component<TimelinePageProps, TimelinePageState> {
                 />
                 {isCreateChart && (
                     <ChartWithInfo
-                        chartRef={this.chartRef}
                         currentCurrencyChart={currentCurrencyChart}
                         data={data}
                     />
                 )}
-                {isInView && createPortal(this.notify, document.body)}
+                {createPortal(this.state.notify, document.body)}
             </div>
         )
     }

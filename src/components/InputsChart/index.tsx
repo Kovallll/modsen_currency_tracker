@@ -17,12 +17,19 @@ export class InputsChart extends Component<InputsChartProps> {
         super(props)
     }
 
+    validateInput = (input: string) => {
+        const inputRegex = /^(?!0)(?!.*e.*e)[0-9]*e?[0-9]*$/
+        if (inputRegex.test(input)) {
+            return input
+        } else return input.slice(0, input.length - 1)
+    }
+
     handleChangeHigh = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { handleUpdateData, data } = this.props
 
         handleUpdateData({
             ...data,
-            high: +e.target.value,
+            high: this.validateInput(e.target.value),
         })
     }
 
@@ -31,7 +38,7 @@ export class InputsChart extends Component<InputsChartProps> {
 
         handleUpdateData({
             ...data,
-            low: +e.target.value,
+            low: this.validateInput(e.target.value),
         })
     }
 
@@ -40,7 +47,7 @@ export class InputsChart extends Component<InputsChartProps> {
 
         handleUpdateData({
             ...data,
-            close: +e.target.value,
+            close: this.validateInput(e.target.value),
         })
     }
 
@@ -49,7 +56,7 @@ export class InputsChart extends Component<InputsChartProps> {
 
         handleUpdateData({
             ...data,
-            open: +e.target.value,
+            open: this.validateInput(e.target.value),
         })
     }
 
@@ -67,28 +74,24 @@ export class InputsChart extends Component<InputsChartProps> {
                     handleChange={this.handleChangeOpen}
                     searchValue={data.open}
                     text="open"
-                    type="number"
                     className={styles.input}
                 />
                 <Input
                     handleChange={this.handleChangeClose}
                     searchValue={data.close}
                     text="close"
-                    type="number"
                     className={styles.input}
                 />
                 <Input
                     handleChange={this.handleChangeLow}
                     searchValue={data.low}
                     text="low"
-                    type="number"
                     className={styles.input}
                 />
                 <Input
                     handleChange={this.handleChangeHigh}
                     searchValue={data.high}
                     text="high"
-                    type="number"
                     className={styles.input}
                 />
                 <div onClick={this.handleDelete} className={styles.basket}>

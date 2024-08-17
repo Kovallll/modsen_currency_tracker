@@ -1,4 +1,4 @@
-@import '../../styles/vars.scss';
+@import '../../../styles/vars.scss';
 
 .container {
     position: fixed;
@@ -64,37 +64,44 @@
 }
 
 .title {
-    color: var(--primary-color);
     margin-bottom: $spacer-xs;
-    font-size: $fs-l;
-    @media (max-width: $md) {
-        font-size: $fs-m;
-    }
-    @media (max-width: $sm) {
-        font-size: $fs-s;
-    }
 }
 
 .currencies {
     width: 100%;
     overflow: hidden;
-    select {
-        background: var(--card-background-color);
-    }
 }
 
 .description {
     display: flex;
     flex-direction: column;
     margin-bottom: $spacer-s;
-    & {
-        color: var(--primary-color);
-        font-size: $fs-m;
-        @media (max-width: $md) {
-            font-size: $fs-s;
-        }
-        @media (max-width: $sm) {
-            font-size: $fs-xs;
-        }
+}
+
+.loadTitle {
+    width: 200px;
+    height: 40px;
+    animation: skeleton-loading 2s linear infinite alternate;
+}
+
+.loadDescription {
+    width: 300px;
+    height: 30px;
+    animation: skeleton-loading 2s linear infinite alternate;
+    margin-bottom: 4px;
+}
+
+.loadSelect {
+    width: 600px;
+    height: 40px;
+    animation: skeleton-loading 2s linear infinite alternate;
+}
+
+@keyframes skeleton-loading {
+    0% {
+        background-color: hsl(200, 20%, 80%);
+    }
+    100% {
+        background-color: hsl(200, 20%, 95%);
     }
 }

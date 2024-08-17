@@ -7,9 +7,11 @@ html {
     background-color: var(--background-color);
     overflow-x: hidden;
     scroll-behavior: smooth;
+    height: 100%;
 }
 
 body {
     font-family: $ff;
     overflow-x: hidden;
+    height: 100%;
 }
