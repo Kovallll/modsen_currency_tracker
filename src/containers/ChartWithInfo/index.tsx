@@ -15,7 +15,6 @@ interface ChartCreaterProps {
         c: number
         l: number
     }[]
-    chartRef: React.RefObject<HTMLDivElement>
 }
 
 export class ChartWithInfo extends Component<ChartCreaterProps> {
@@ -24,10 +23,10 @@ export class ChartWithInfo extends Component<ChartCreaterProps> {
     }
 
     render(): ReactNode {
-        const { currentCurrencyChart, data, chartRef } = this.props
+        const { currentCurrencyChart, data } = this.props
         return (
             <div className={styles.container}>
-                <div className={styles.chartInfo} ref={chartRef}>
+                <div className={styles.chartInfo}>
                     <div className={styles.icon}>
                         {currencies[currentCurrencyChart.asset_id]}
                     </div>

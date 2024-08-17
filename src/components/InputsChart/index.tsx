@@ -18,10 +18,10 @@ export class InputsChart extends Component<InputsChartProps> {
     }
 
     validateInput = (input: string) => {
-        const inputRegex = /^(?!0)[0-9e]+$/
+        const inputRegex = /^(?!0)(?!.*e.*e)[0-9]*e?[0-9]*$/
         if (inputRegex.test(input)) {
             return input
-        } else return ''
+        } else return input.slice(0, input.length - 1)
     }
 
     handleChangeHigh = (e: React.ChangeEvent<HTMLInputElement>) => {

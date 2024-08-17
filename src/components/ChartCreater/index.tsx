@@ -12,6 +12,7 @@ interface ChartCreaterProps {
     handleUpdateChartData: (data: InputData) => void
     handleAddInputs: () => void
     handleCreateChart: () => void
+    createButtonRef: React.RefObject<HTMLButtonElement>
 }
 
 export class ChartCreater extends Component<ChartCreaterProps> {
@@ -26,6 +27,7 @@ export class ChartCreater extends Component<ChartCreaterProps> {
             handleUpdateChartData,
             handleAddInputs,
             handleCreateChart,
+            createButtonRef
         } = this.props
         return (
             <div className={styles.container}>
@@ -44,7 +46,11 @@ export class ChartCreater extends Component<ChartCreaterProps> {
                         onClick={handleAddInputs}
                         title="Add"
                     />
-                    <Button onClick={handleCreateChart} title="Create" />
+                    <Button
+                        createButtonRef={createButtonRef}
+                        onClick={handleCreateChart}
+                        title="Create"
+                    />
                 </div>
             </div>
         )

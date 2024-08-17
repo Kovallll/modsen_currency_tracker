@@ -6,6 +6,7 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
     onClick: () => void
     title: string
     className?: string
+    createButtonRef?: React.RefObject<HTMLButtonElement>
 }
 
 export class Button extends PureComponent<ButtonProps> {
@@ -14,12 +15,14 @@ export class Button extends PureComponent<ButtonProps> {
     }
 
     render() {
-        const { className, onClick, title, ...props } = this.props
+        const { className, onClick, title, createButtonRef, ...props } =
+            this.props
         return (
             <button
                 {...props}
                 className={`${styles.button} ${className}`}
                 onClick={onClick}
+                ref={createButtonRef}
             >
                 {title}
             </button>

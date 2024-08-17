@@ -20,7 +20,7 @@ const RootRoute = () => {
             <div className={styles.content}>
                 <Outlet />
             </div>
-            <Footer />
+            <Footer className={styles.footer} />
         </div>
     )
 }

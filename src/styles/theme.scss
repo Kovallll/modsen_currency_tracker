@@ -10,6 +10,8 @@
     --card-border: 2px solid #{$card-border-dark};
     --card-border-radius: 8px;
 
+    --modal-background-color: #{$modal-bg-dark};
+
     --header-background-color: #{$black};
     --header-nav-color: #{$white};
 
@@ -25,6 +27,8 @@
     --card-background-color: #{$card-bg-light};
     --card-border: 2px solid #{$card-border-light};
     --card-border-radius: 8px;
+
+    --modal-background-color: #{$modal-bg-light};
 
     --header-background-color: #{$white};
     --header-nav-color: #{$black};
