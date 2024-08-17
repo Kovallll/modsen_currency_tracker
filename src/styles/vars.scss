@@ -5,6 +5,7 @@ $max-w: 1225px;
 // отступы
 $spacer-base: 32px;
 
+$spacer-xxxs: 0.125 * $spacer-base;
 $spacer-xxs: 0.25 * $spacer-base;
 $spacer-xs: 0.5 * $spacer-base;
 $spacer-s: 0.75 * $spacer-base;
@@ -28,7 +29,9 @@ $fs-xxl: 76px;
 
 // цвета
 $bg-dark: #030304;
+$bg-dark-hover: #b8b8b861;
 $bg-light: #f7f7f7;
+$bg-light-hover: #58d10861;
 $primary-dark: #d9d9d9;
 $secondary-dark: #a7b2c3;
 $primary-light: #1d1c1c;
@@ -40,7 +43,12 @@ $card-bg-dark: #202025;
 $card-bg-light: #e0e0e0;
 $card-border-dark: #474747;
 $card-border-light: #3f3f3f;
-$search-bg: #1b2028;
+$search-bg-light: #a3a3a3;
+$search-bg-dark: #1b2028;
+$search-height-xl: 54px;
+$search-height-lg: 44px;
+$search-height-md: 38px;
+$search-height-sm: 30px;
 $text-gradient: linear-gradient(92deg, #00ce2c 0%, #aedf23 50%, #a3dc00 100%);
 $bg-gradient: linear-gradient(
     225deg,

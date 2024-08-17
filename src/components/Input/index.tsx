@@ -3,12 +3,11 @@ import { PureComponent } from 'react'
 import * as styles from './styles.module.scss'
 
 interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
-    value: number | string
+    searchValue: number | string
     handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void
+    inputRef?: React.RefObject<HTMLInputElement>
     text?: string
-    type?: string
     className?: string
-    placeholder?: string
 }
 
 export class Input extends PureComponent<InputProps> {
@@ -19,17 +18,23 @@ export class Input extends PureComponent<InputProps> {
         type: 'text',
     }
     render() {
-        const { value, handleChange, type, text, className, placeholder } =
-            this.props
+        const {
+            searchValue,
+            handleChange,
+            text,
+            className,
+            inputRef,
+            ...props
+        } = this.props
         return (
             <div className={styles.container}>
-                {this.props.text && <p className={styles.text}>{text}</p>}
+                {text && <p className={styles.text}>{text}</p>}
                 <input
-                    type={type}
-                    value={value}
+                    {...props}
+                    value={searchValue}
                     onChange={handleChange}
                     className={`${styles.input} ${className}`}
-                    placeholder={placeholder}
+                    ref={inputRef}
                 />
             </div>
         )

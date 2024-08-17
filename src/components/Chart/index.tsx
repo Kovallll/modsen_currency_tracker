@@ -22,13 +22,15 @@ export class CandlestickChart extends Component<CandlestickChartProps> {
     }
 
     componentDidMount(): void {
+        const { data } = this.props
+
         new Chart(this.chartRef.current as unknown as ChartItem, {
             type: 'candlestick' as keyof ChartTypeRegistry,
             data: {
                 datasets: [
                     {
                         label: 'CHRT - Chart.js Corporation',
-                        data: this.props.data,
+                        data: data,
                         backgroundColor: 'rgba(0, 123, 255, 0.5)',
                         borderColor: 'rgba(0, 123, 255, 1)',
                         borderWidth: 1,

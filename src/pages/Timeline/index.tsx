@@ -91,9 +91,11 @@ class TimelinePage extends Component<TimelinePageProps, TimelinePageState> {
     }
 
     handleDeleteInputs = (day: number) => {
-        if (this.state.chartData.length !== 1) {
+        const { chartData } = this.state
+
+        if (chartData.length !== 1) {
             this.setState({
-                chartData: this.state.chartData.filter((el) => el.day !== day),
+                chartData: chartData.filter((el) => el.day !== day),
                 isCreateChart: false,
             })
         }
@@ -104,27 +106,30 @@ class TimelinePage extends Component<TimelinePageProps, TimelinePageState> {
             const index = state.chartData.findIndex(
                 (item) => item.day === data.day
             )
-            state.chartData.splice(index, 1, data)
+            const dataArr = state.chartData
+            dataArr.splice(index, 1, data)
             return {
-                chartData: [...state.chartData],
+                chartData: [...dataArr],
                 isCreateChart: false,
             }
         })
     }
 
     handleAddInputs = () => {
+        const { chartData, day } = this.state
+
         this.setState({
             chartData: [
-                ...this.state.chartData,
+                ...chartData,
                 {
                     open: 0,
                     close: 0,
                     high: 0,
                     low: 0,
-                    day: this.state.day,
+                    day: day,
                 },
             ],
-            day: this.state.day + 1,
+            day: day + 1,
             isCreateChart: false,
         })
     }

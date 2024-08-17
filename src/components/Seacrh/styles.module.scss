@@ -27,8 +27,26 @@
     }
 }
 
-.search {
+.seacrhBlock {
+    position: relative;
     width: 100%;
-    background: #1b2028;
+}
+
+.search {
+    height: $search-height-xl;
+    background: var(--search-background-color);
     border: none;
+    padding-left: $spacer-s;
+    @media (max-width: $lg) {
+        height: $search-height-lg;
+        padding-left: $spacer-xs;
+    }
+    @media (max-width: $md) {
+        height: $search-height-md;
+        padding-left: $spacer-xs;
+    }
+    @media (max-width: $sm) {
+        height: $search-height-sm;
+        padding-left: $spacer-xxs;
+    }
 }

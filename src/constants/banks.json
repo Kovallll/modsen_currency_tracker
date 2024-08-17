@@ -44,6 +44,51 @@
                 },
                 "type": "Point"
             }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "title": "Prior Bank",
+                "description": "Location: Gomel",
+                "currencies": ["MXN", "CAD", "BRL"]
+            },
+            "geometry": {
+                "coordinates": {
+                    "lng": 30.997836945937138,
+                    "lat": 52.430916339423646
+                },
+                "type": "Point"
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "title": "Prior Bank",
+                "description": "Location: Mogilev",
+                "currencies": ["LBR", "KRW", "Euro"]
+            },
+            "geometry": {
+                "coordinates": {
+                    "lng": 30.339699028580384,
+                    "lat": 53.90648976822044
+                },
+                "type": "Point"
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "title": "Belarus Bank",
+                "description": "Location: Brest",
+                "currencies": ["AUD", "KRW"]
+            },
+            "geometry": {
+                "coordinates": {
+                    "lng": 23.701752903658416,
+                    "lat": 52.091354417120016
+                },
+                "type": "Point"
+            }
         }
     ]
 }

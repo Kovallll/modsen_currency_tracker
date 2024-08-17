@@ -17,7 +17,9 @@ export class Marker extends PureComponent<MarkerProps> {
     }
 
     handleClick = () => {
-        this.props.onClick(this.props.feature.properties.description)
+        const { onClick, feature } = this.props
+
+        onClick(feature.properties.description)
     }
 
     render() {
