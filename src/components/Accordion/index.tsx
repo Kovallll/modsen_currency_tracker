@@ -4,20 +4,26 @@ import * as styles from './styles.module.scss'
 
 import Arrow from '@/assets/icons/arrow.svg'
 
-interface AccordionProps {
+interface AccordionProps extends React.ButtonHTMLAttributes<HTMLDivElement> {
     title: string
     textData: string[]
     theme: string
 }
 
-export const Accordion = ({ title, textData, theme }: AccordionProps) => {
+export const Accordion = ({
+    title,
+    textData,
+    theme,
+    ...props
+}: AccordionProps) => {
     const [isOpen, setIsOpen] = useState(false)
 
     const handleOpenClick = () => {
         setIsOpen((prev) => !prev)
     }
+
     return (
-        <div className={styles.container} onClick={handleOpenClick}>
+        <div {...props} className={styles.container} onClick={handleOpenClick}>
             <div className={styles.head}>
                 <p className={styles.title}>{title}</p>
                 <div className={isOpen ? styles.closeIcon : styles.openIcon}>

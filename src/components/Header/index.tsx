@@ -27,9 +27,7 @@ export const Header = () => {
         <header className={styles.container}>
             <div className={styles.wrap}>
                 <nav className={styles.navigation}>
-                    <div className={styles.logo}>
-                        <Logo />
-                    </div>
+                    <Logo className={styles.logo} />
                     <div className={styles.links}>
                         <Link className={styles.link} to={Paths.Home}>
                             Home
@@ -44,37 +42,32 @@ export const Header = () => {
                             Contacts
                         </a>
                     </div>
-                    <div className={styles.toggleButton}>
-                        <ToggleThemeButton />
-                    </div>
+                    <ToggleThemeButton />
                 </nav>
             </div>
             <div className={styles.navDown}>
-                <div className={styles.bannerWrap}>
-                    <div className={styles.banner}>
-                        <div className={styles.bannerText}>
-                            <p className={styles.title}>
-                                Modsen Currency <br />
-                                Tracker
-                            </p>
-                            <p className={styles.subTitle}>
-                                Quotes for the dollar and other international
-                                currencies.
-                            </p>
-                        </div>
-                        <div className={styles.svgWrap}>
-                            <Logo
-                                height={350}
-                                width={300}
-                                viewBox="0 0 40 45"
-                                className={styles.bannerLogo}
-                            />
-                        </div>
+                <div className={styles.banner}>
+                    <div className={styles.bannerText}>
+                        <p className={styles.title}>
+                            Modsen Currency <br />
+                            Tracker
+                        </p>
+                        <p className={styles.subTitle}>
+                            Quotes for the dollar and other international
+                            currencies.
+                        </p>
                     </div>
-                    <div className={styles.lastUpdate}>
-                        <LastUpdated timeUpdate={timeUpdate} />
-                    </div>
+                    <Logo
+                        height={350}
+                        width={300}
+                        viewBox="0 0 40 45"
+                        className={styles.bannerLogo}
+                    />
                 </div>
+                <LastUpdated
+                    className={styles.lastUpdate}
+                    timeUpdate={timeUpdate}
+                />
             </div>
         </header>
     )

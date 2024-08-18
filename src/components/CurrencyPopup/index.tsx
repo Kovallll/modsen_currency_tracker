@@ -21,13 +21,15 @@ export class CurrencyPopup extends PureComponent<CurrencyPopupProps> {
     }
 
     render() {
-        const { searchedCurrencies, cursor, divContainerRef } =
+        const { searchedCurrencies, cursor, divContainerRef, ...props } =
             this.props
+
         return (
-            <div className={styles.container} ref={divContainerRef}>
+            <div {...props} className={styles.container} ref={divContainerRef}>
                 {searchedCurrencies.length ? (
                     searchedCurrencies.map((currency, index) => (
                         <div
+                            key={currency}
                             tabIndex={cursor}
                             className={`${styles.currencyWrap} ${cursor === index ? styles.active : null}`}
                             onClick={this.handleOnClickCurrency(currency)}

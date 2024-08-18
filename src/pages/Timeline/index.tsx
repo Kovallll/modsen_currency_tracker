@@ -6,11 +6,11 @@ import * as styles from './styles.module.scss'
 import { ChartCreater } from '@/components/ChartCreater'
 import { ChartWithInfo } from '@/components/ChartWithInfo'
 import { SelectTimeline } from '@/components/SelectTimeline'
-import { defaultAllAssets, msInDay } from '@/constants'
-import { CurrencyAssetsData, InputData } from '@/types'
+import { dateNowMs, defaultAllAssets, msInDay } from '@/constants'
+import { AssetsDataContext } from '@/providers/AssetsProvider'
+import { CandlestickChartItem, CurrencyAssetsData, InputData } from '@/types'
 
 interface TimelinePageState {
-    assetsData: CurrencyAssetsData[]
     currentCurrencyId: string
     isCreateChart: boolean
     chartData: InputData[]
@@ -21,15 +21,17 @@ interface TimelinePageState {
 type TimelinePageProps = object
 
 class TimelinePage extends Component<TimelinePageProps, TimelinePageState> {
-    private ref: React.RefObject<HTMLSelectElement>
+    static contextType = AssetsDataContext
+    context!: CurrencyAssetsData[]
+
+    private selectRef: React.RefObject<HTMLSelectElement>
     private createButtonRef: React.RefObject<HTMLButtonElement>
-    private event: Event
+    private notifyEvent: Event
     private notifyTimeout: NodeJS.Timeout | null
 
     constructor(props: TimelinePageProps) {
         super(props)
         this.state = {
-            assetsData: JSON.parse(localStorage.getItem('assetsData') ?? '[]'),
             currentCurrencyId: '',
             isCreateChart: false,
             chartData: [
@@ -44,15 +46,15 @@ class TimelinePage extends Component<TimelinePageProps, TimelinePageState> {
             notify: null,
             day: 2,
         }
-        this.ref = createRef()
-        this.event = new Event('createChart')
+        this.selectRef = createRef()
+        this.notifyEvent = new Event('createChart')
         this.createButtonRef = createRef()
         this.notifyTimeout = null
     }
 
     componentDidMount() {
         this.setState({
-            currentCurrencyId: this.ref.current?.value ?? '',
+            currentCurrencyId: this.selectRef.current?.value ?? '',
         })
         this.createButtonRef.current?.addEventListener(
             'createChart',
@@ -103,13 +105,13 @@ class TimelinePage extends Component<TimelinePageProps, TimelinePageState> {
 
     handleUpdateCurrency = () => {
         this.setState({
-            currentCurrencyId: this.ref.current?.value ?? '',
+            currentCurrencyId: this.selectRef.current?.value ?? '',
         })
     }
 
     handleCreateChart = () => {
         if (!this.state.isCreateChart) {
-            this.createButtonRef.current?.dispatchEvent(this.event)
+            this.createButtonRef.current?.dispatchEvent(this.notifyEvent)
         }
     }
 
@@ -149,7 +151,7 @@ class TimelinePage extends Component<TimelinePageProps, TimelinePageState> {
                     close: this.getRandomValue(),
                     high: this.getRandomValue(),
                     low: this.getRandomValue(),
-                    day: this.state.day,
+                    day,
                 },
             ],
             day: day + 1,
@@ -158,40 +160,41 @@ class TimelinePage extends Component<TimelinePageProps, TimelinePageState> {
     }
 
     render() {
-        const { assetsData, currentCurrencyId, chartData, isCreateChart } =
+        const assetsData = this.context
+        const { currentCurrencyId, chartData, isCreateChart, notify } =
             this.state
 
         const currentCurrencyChart =
             assetsData.find((item) => item.asset_id === currentCurrencyId) ??
             defaultAllAssets
 
-        const dateNowMs = new Date().getTime()
-
-        const data = chartData.map((item) => {
-            const o = Number.parseFloat(item.open)
-            const c = Number.parseFloat(item.close)
-            const l = Number.parseFloat(item.low)
-            const h = Number.parseFloat(item.high)
-            return {
-                x: Number(item.day) * msInDay + dateNowMs,
-                o: o,
-                h: h,
-                c: c,
-                l: l,
+        const correctChartData: CandlestickChartItem[] = chartData.map(
+            (item) => {
+                const o = Number.parseFloat(item.open)
+                const c = Number.parseFloat(item.close)
+                const l = Number.parseFloat(item.low)
+                const h = Number.parseFloat(item.high)
+                return {
+                    x: Number(item.day) * msInDay + dateNowMs,
+                    o: o,
+                    h: h,
+                    c: c,
+                    l: l,
+                }
             }
-        })
+        )
         return (
             <div className={styles.container}>
                 <div className={styles.selectWrap}>
                     <SelectTimeline
                         assetsData={assetsData}
                         handleUpdateCurrency={this.handleUpdateCurrency}
-                        selectRef={this.ref}
+                        selectRef={this.selectRef}
                     />
                 </div>
                 <ChartCreater
                     createButtonRef={this.createButtonRef}
-                    chartData={this.state.chartData}
+                    chartData={chartData}
                     handleAddInputs={this.handleAddInputs}
                     handleCreateChart={this.handleCreateChart}
                     handleDeleteInputs={this.handleDeleteInputs}
@@ -200,10 +203,10 @@ class TimelinePage extends Component<TimelinePageProps, TimelinePageState> {
                 {isCreateChart && (
                     <ChartWithInfo
                         currentCurrencyChart={currentCurrencyChart}
-                        data={data}
+                        data={correctChartData}
                     />
                 )}
-                {createPortal(this.state.notify, document.body)}
+                {createPortal(notify, document.body)}
             </div>
         )
     }

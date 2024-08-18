@@ -4,7 +4,6 @@ import * as styles from './styles.module.scss'
 
 interface MarkerProps {
     onClick: (feature: string) => void
-    children?: React.ReactNode
     feature: Feature
 }
 
@@ -23,11 +22,11 @@ export class Marker extends PureComponent<MarkerProps> {
     }
 
     render() {
-        const { feature, children } = this.props
+        const { feature } = this.props
+
         return (
             <button onClick={this.handleClick} className={styles.marker}>
                 {feature.properties.title}
-                {children}
             </button>
         )
     }

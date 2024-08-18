@@ -8,15 +8,18 @@ interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
     inputRef?: React.RefObject<HTMLInputElement>
     text?: string
     className?: string
+    placeholder?: string
 }
 
 export class Input extends PureComponent<InputProps> {
-    constructor(props: InputProps) {
-        super(props)
-    }
     static defaultProps = {
         type: 'text',
     }
+
+    constructor(props: InputProps) {
+        super(props)
+    }
+
     render() {
         const {
             searchValue,
@@ -24,8 +27,10 @@ export class Input extends PureComponent<InputProps> {
             text,
             className,
             inputRef,
+            placeholder,
             ...props
         } = this.props
+
         return (
             <div className={styles.container}>
                 {text && <p className={styles.text}>{text}</p>}
@@ -35,6 +40,7 @@ export class Input extends PureComponent<InputProps> {
                     onChange={handleChange}
                     className={`${styles.input} ${className}`}
                     ref={inputRef}
+                    placeholder={placeholder}
                 />
             </div>
         )

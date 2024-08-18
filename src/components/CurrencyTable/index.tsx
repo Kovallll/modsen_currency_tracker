@@ -11,14 +11,24 @@ interface CurrencyTableProps {
     currencyData: CurrencyAssetsData[]
 }
 
-export const CurrencyTable = ({ title, currencyData }: CurrencyTableProps) => {
+export const CurrencyTable = ({
+    title,
+    currencyData,
+    ...props
+}: CurrencyTableProps) => {
     return (
-        <div className={styles.container}>
+        <div {...props} className={styles.container}>
             <div className={styles.title}>{title}</div>
             <div className={styles.cardsBlock}>
                 {currencyData?.map((currency) => (
-                    <Suspense fallback={<CurrencyCardLoader />}>
-                        <CurrencyCard currency={currency} key={currency.name} />
+                    <Suspense
+                        key={currency.asset_id}
+                        fallback={<CurrencyCardLoader />}
+                    >
+                        <CurrencyCard
+                            currency={currency}
+                            key={currency.title}
+                        />
                     </Suspense>
                 ))}
             </div>

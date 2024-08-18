@@ -67,32 +67,36 @@ export class InputsChart extends Component<InputsChartProps> {
     }
 
     render() {
-        const { data } = this.props
+        const { data, ...props } = this.props
         return (
-            <div className={styles.container}>
+            <div {...props} className={styles.container}>
                 <Input
                     handleChange={this.handleChangeOpen}
                     searchValue={data.open}
                     text="open"
                     className={styles.input}
+                    placeholder="open"
                 />
                 <Input
                     handleChange={this.handleChangeClose}
                     searchValue={data.close}
                     text="close"
                     className={styles.input}
+                    placeholder="close"
                 />
                 <Input
                     handleChange={this.handleChangeLow}
                     searchValue={data.low}
                     text="low"
                     className={styles.input}
+                    placeholder="low"
                 />
                 <Input
                     handleChange={this.handleChangeHigh}
                     searchValue={data.high}
                     text="high"
                     className={styles.input}
+                    placeholder="high"
                 />
                 <div onClick={this.handleDelete} className={styles.basket}>
                     <Basket />

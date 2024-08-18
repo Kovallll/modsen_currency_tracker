@@ -79,13 +79,13 @@ export const defaultLastUpdate = { last_updated_at: '00' }
 
 export const defaultAllAssets: CurrencyAssetsData = {
     asset_id: Currencies.Dollar,
-    name: '',
-    data_symbols_count: 0,
-    price_usd: 0,
-    data_start: '',
-    data_end: '',
+    title: '',
+    subtitle: 0,
+    priceUsd: 0,
+    start: '',
+    end: '',
 }
 
 export const msInDay = 86400000
 
-export const dateNow = new Date().getTime()
+export const dateNowMs = new Date().getTime()

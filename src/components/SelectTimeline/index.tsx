@@ -4,27 +4,32 @@ import * as styles from './styles.module.scss'
 
 import { CurrencyAssetsData } from '@/types'
 
-interface ChartCreaterProps {
+interface SelectTimelineProps
+    extends React.SelectHTMLAttributes<HTMLSelectElement> {
     selectRef: React.RefObject<HTMLSelectElement>
     handleUpdateCurrency: () => void
     assetsData: CurrencyAssetsData[]
 }
 
-export class SelectTimeline extends Component<ChartCreaterProps> {
-    constructor(props: ChartCreaterProps) {
+export class SelectTimeline extends Component<SelectTimelineProps> {
+    constructor(props: SelectTimelineProps) {
         super(props)
     }
 
     render(): ReactNode {
-        const { selectRef, handleUpdateCurrency, assetsData } = this.props
+        const { selectRef, handleUpdateCurrency, assetsData, ...props } =
+            this.props
         return (
             <select
+                {...props}
                 className={styles.select}
                 ref={selectRef}
                 onChange={handleUpdateCurrency}
             >
                 {assetsData.map((currency) => (
-                    <option value={currency.asset_id}>{currency.name}</option>
+                    <option key={currency.asset_id} value={currency.asset_id}>
+                        {currency.title}
+                    </option>
                 ))}
             </select>
         )

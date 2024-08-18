@@ -5,6 +5,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
     padding: 0 $spacer-xxl;
     background: var(--footer-background-color);
     @media (max-width: $xxl) {
@@ -21,15 +22,8 @@
     }
 }
 
-.content {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    max-width: $max-w;
-}
-
 .info {
+    max-width: $max-w;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -116,6 +110,11 @@
     }
 }
 
+.accordion {
+    display: flex;
+    flex-direction: column;
+}
+
 .rights {
     text-align: center;
     margin-bottom: $spacer-base;
@@ -126,9 +125,4 @@
     @media (max-width: $md) {
         font-size: $fs-xs;
     }
-}
-
-.accordion {
-    display: flex;
-    flex-direction: column;
 }

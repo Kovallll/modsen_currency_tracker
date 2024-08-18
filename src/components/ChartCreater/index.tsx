@@ -27,13 +27,16 @@ export class ChartCreater extends Component<ChartCreaterProps> {
             handleUpdateChartData,
             handleAddInputs,
             handleCreateChart,
-            createButtonRef
+            createButtonRef,
+            ...props
         } = this.props
+
         return (
-            <div className={styles.container}>
+            <div {...props} className={styles.container}>
                 <div className={styles.inputs}>
                     {chartData.map((data) => (
                         <InputsChart
+                            key={data.day}
                             data={data}
                             handleDeleteInputs={handleDeleteInputs}
                             handleUpdateData={handleUpdateChartData}
