@@ -18,6 +18,7 @@ const CurrencyModal = ({
     onClose,
     description,
     asset_id,
+    ...props
 }: CurrencyModalProps) => {
     const [rateData, setRateData] = useState<CurrencyRateData>(defaultRate)
 
@@ -30,9 +31,9 @@ const CurrencyModal = ({
     }, [asset_id])
 
     const { asset_id_base, rates } = rateData
-    const { price_usd, data_start, data_end } = description
+    const { priceUsd, start, end } = description
     return (
-        <div className={styles.container}>
+        <div {...props} className={styles.container}>
             <div className={styles.window}>
                 <button className={styles.close} onClick={onClose}>
                     <CloseIcon />
@@ -40,9 +41,9 @@ const CurrencyModal = ({
                 <div className={styles.content}>
                     <div className={styles.title}>Convert {asset_id_base}</div>
                     <div className={styles.description}>
-                        <p>price usd: {price_usd.toFixed(7)}</p>
-                        <p>start: {data_start}</p>
-                        <p>end: {data_end}</p>
+                        <p>price usd: {priceUsd.toFixed(7)}</p>
+                        <p>start: {start}</p>
+                        <p>end: {end}</p>
                     </div>
                     <div className={styles.currencies}>
                         <SelectCurrency>

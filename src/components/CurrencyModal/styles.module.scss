@@ -75,14 +75,6 @@
     }
 }
 
-.currencies {
-    width: 100%;
-    overflow: hidden;
-    select {
-        background: var(--card-background-color);
-    }
-}
-
 .description {
     display: flex;
     flex-direction: column;
@@ -96,5 +88,13 @@
         @media (max-width: $sm) {
             font-size: $fs-xs;
         }
+    }
+}
+
+.currencies {
+    width: 100%;
+    overflow: hidden;
+    select {
+        background: var(--card-background-color);
     }
 }

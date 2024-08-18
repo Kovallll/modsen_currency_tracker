@@ -2,7 +2,6 @@ import axios from 'axios'
 
 import {
     Currencies,
-    currencies,
     defaultAllAssets,
     defaultLastUpdate,
     getResponseAssetRate,
@@ -11,6 +10,7 @@ import {
 } from '@/constants'
 import {
     CurrencyAssetsData,
+    CurrencyAssetsDataResponse,
     CurrencyRateData,
     LastUpdated,
     LastUpdatedData,
@@ -22,22 +22,22 @@ export const getAllAssets = async () => {
         const data: CurrencyAssetsData[] = JSON.parse(
             localStorage.getItem('assetsData') ?? JSON.stringify(null)
         )
+
         if (data !== null && getDateTimer()) {
             return data
         } else {
-            const data = await axios.get<CurrencyAssetsData[]>(responseAssets)
-            const response = data.data
-                .filter((item) => !!currencies[item.asset_id])
-                .map((item) => {
-                    return {
-                        asset_id: item.asset_id ?? Currencies.Dollar,
-                        name: item.name ?? 'none',
-                        data_symbols_count: item.data_symbols_count ?? 0,
-                        price_usd: item.price_usd ?? 0,
-                        data_start: item.data_start ?? 'none',
-                        data_end: item.data_end ?? 'none',
-                    }
-                })
+            const { data } =
+                await axios.get<CurrencyAssetsDataResponse[]>(responseAssets)
+            const response: CurrencyAssetsData[] = data.map((item) => {
+                return {
+                    asset_id: item.asset_id ?? Currencies.Dollar,
+                    title: item.name ?? 'none',
+                    subtitle: item.data_symbols_count ?? 0,
+                    priceUsd: item.price_usd ?? 0,
+                    start: item.data_start ?? 'none',
+                    end: item.data_end ?? 'none',
+                }
+            })
 
             localStorage.setItem('assetsData', JSON.stringify(response))
             localStorage.setItem(
@@ -48,7 +48,7 @@ export const getAllAssets = async () => {
         }
     } catch (error) {
         console.log(error)
-        return defaultAllAssets
+        return [defaultAllAssets]
     }
 }
 

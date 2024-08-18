@@ -4,7 +4,7 @@ export interface CurrencyCardData {
     currency: CurrencyAssetsData
 }
 
-export interface CurrencyAssetsData {
+export interface CurrencyAssetsDataResponse {
     asset_id: Currencies
     name: string
     data_symbols_count: number
@@ -13,10 +13,19 @@ export interface CurrencyAssetsData {
     data_end: string
 }
 
+export interface CurrencyAssetsData {
+    asset_id: Currencies
+    title: string
+    subtitle: number
+    priceUsd: number
+    start: string
+    end: string
+}
+
 export interface DescriptionData {
-    price_usd: number
-    data_start: string
-    data_end: string
+    priceUsd: number
+    start: string
+    end: string
 }
 
 export interface CurrencyRateData {

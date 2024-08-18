@@ -9,6 +9,7 @@ import bankGeo from '@/constants/banks.json'
 
 mapboxgl.accessToken =
     'pk.eyJ1Ijoia292YWxsbGwiLCJhIjoiY2x6d2Uzc3ZsMGlodzJpcjdrNTRsZmdjNyJ9.tT9Fo2bCLeRGjJWHtNdZpw'
+
 interface MapProps extends React.InputHTMLAttributes<HTMLDivElement> {
     mapContainer: React.RefObject<HTMLDivElement>
     searchValue: string
@@ -25,7 +26,7 @@ interface MarkerObject {
     marker: mapboxgl.Marker
 }
 
-export class Map extends PureComponent<MapProps, MapState> {
+class Map extends PureComponent<MapProps, MapState> {
     private map: any
     constructor(props: MapProps) {
         super(props)
@@ -71,6 +72,7 @@ export class Map extends PureComponent<MapProps, MapState> {
     componentDidUpdate() {
         const { markers } = this.state
         const { searchValue } = this.props
+
         bankGeo.features.forEach((feature, index) => {
             const isSearch = feature.properties.currencies.find((str) =>
                 str
@@ -111,3 +113,5 @@ export class Map extends PureComponent<MapProps, MapState> {
         return <div ref={mapContainer} className={styles.mapContainer} />
     }
 }
+
+export default Map

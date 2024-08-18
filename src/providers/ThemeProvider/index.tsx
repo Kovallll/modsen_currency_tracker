@@ -1,11 +1,13 @@
 import { createContext, useEffect, useState } from 'react'
 
 interface ThemeContext {
-    theme: 'dark' | 'light'
+    theme: Theme
     toggleTheme: () => void
 }
 
-export const ThemeContext = createContext({
+type Theme = 'dark' | 'light'
+
+export const ThemeContext = createContext<ThemeContext>({
     theme: 'dark',
     toggleTheme: () => {},
 })
@@ -16,9 +18,9 @@ interface ThemeProviderProps {
 
 const ThemeProvider = ({ children }: ThemeProviderProps) => {
     const initialTheme = () => {
-        return localStorage.getItem('theme') || 'dark'
+        return (localStorage.getItem('theme') as Theme) || 'dark'
     }
-    const [theme, setTheme] = useState(initialTheme)
+    const [theme, setTheme] = useState<Theme>(initialTheme)
 
     useEffect(() => {
         localStorage.setItem('theme', theme)

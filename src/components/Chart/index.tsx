@@ -1,5 +1,5 @@
 import React, { Component, createRef } from 'react'
-import { Chart, ChartItem, ChartTypeRegistry } from 'chart.js'
+import { Chart, ChartTypeRegistry } from 'chart.js'
 
 import { CandlestickController } from './controller.candlestick.js'
 import { CandlestickElement } from './element.candlestick.js'
@@ -24,22 +24,30 @@ export class CandlestickChart extends Component<CandlestickChartProps> {
     componentDidMount(): void {
         const { data } = this.props
 
-        new Chart(this.chartRef.current as unknown as ChartItem, {
+        new Chart(this.chartRef.current ?? '', {
             type: 'candlestick' as keyof ChartTypeRegistry,
             data: {
                 datasets: [
                     {
                         label: 'CHRT - Chart.js Corporation',
                         data: data,
-                        backgroundColor: 'rgba(0, 123, 255, 0.5)',
-                        borderColor: 'rgba(0, 123, 255, 1)',
+                        backgroundColor: '#ff005dbe',
+                        borderColor: '#ff005dbe',
                         borderWidth: 1,
                     },
                 ],
             },
         })
     }
+
     render() {
-        return <canvas className={styles.chart} ref={this.chartRef}></canvas>
+        const { ...props } = this.props
+        return (
+            <canvas
+                {...props}
+                className={styles.chart}
+                ref={this.chartRef}
+            ></canvas>
+        )
     }
 }

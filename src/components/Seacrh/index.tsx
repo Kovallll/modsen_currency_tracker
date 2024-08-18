@@ -160,9 +160,10 @@ export class Search extends PureComponent<SearchProps, SearchState> {
 
     render() {
         const { searchedCurrencies, isFocus, cursor } = this.state
-        const { searchValue, handleChange, text, className } = this.props
+        const { searchValue, handleChange, text, className, ...props } =
+            this.props
         return (
-            <search className={`${styles.container} ${className}`}>
+            <search {...props} className={`${styles.container} ${className}`}>
                 <p className={styles.text}>{text}</p>
                 <div className={styles.seacrhBlock}>
                     <Input

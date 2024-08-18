@@ -4,14 +4,14 @@ import * as styles from './styles.module.scss'
 
 import { ThemeContext } from '@/providers/ThemeProvider'
 
-export const ToggleThemeButton = () => {
+export const ToggleThemeButton = ({ ...props }) => {
     const { theme, toggleTheme } = useContext(ThemeContext)
 
     const handleClickButton = () => {
         toggleTheme()
     }
     return (
-        <div className={styles.container}>
+        <div {...props} className={styles.container}>
             <button
                 className={
                     theme === 'dark' ? styles.darkButton : styles.lightButton

@@ -8,30 +8,28 @@ import { currencies } from '@/constants'
 import { CurrencyCardData } from '@/types'
 
 const CurrencyModal = lazy(() => import('../CurrencyModal'))
-const CurrencyCard = ({ currency }: CurrencyCardData) => {
+
+const CurrencyCard = ({ currency, ...props }: CurrencyCardData) => {
     const [showModal, setShowModal] = useState(false)
 
     const handleShowModal = () => {
         setShowModal((prev) => !prev)
     }
 
-    const {
-        name,
-        asset_id,
-        data_end,
-        data_start,
-        data_symbols_count,
-        price_usd,
-    } = currency
+    const { title, asset_id, end, start, subtitle, priceUsd } = currency
 
-    const description = { price_usd, data_start, data_end }
+    const description = { priceUsd, start, end }
     return (
         <>
-            <div className={styles.container} onClick={handleShowModal}>
+            <div
+                {...props}
+                className={styles.container}
+                onClick={handleShowModal}
+            >
                 <div className={styles.image}>{currencies[asset_id]}</div>
                 <div className={styles.info}>
-                    <div className={styles.title}>{name}</div>
-                    <div className={styles.subtitle}>{data_symbols_count}</div>
+                    <div className={styles.title}>{title}</div>
+                    <div className={styles.subtitle}>{subtitle}</div>
                 </div>
             </div>
             {showModal &&
