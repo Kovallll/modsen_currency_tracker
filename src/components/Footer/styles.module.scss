@@ -1,0 +1,128 @@
+@import '../../styles/vars.scss';
+
+.container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 0 $spacer-xxl;
+    background: var(--footer-background-color);
+    @media (max-width: $xxl) {
+        padding: 0 $spacer-xl;
+    }
+    @media (max-width: $xl) {
+        padding: 0 $spacer-l;
+    }
+    @media (max-width: $lg) {
+        padding: 0 $spacer-m;
+    }
+    @media (max-width: $md) {
+        padding: 0 $spacer-s;
+    }
+}
+
+.info {
+    max-width: $max-w;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: $spacer-xs;
+    margin-bottom: $spacer-xl;
+
+    @media (max-width: $md) {
+        flex-direction: column;
+    }
+}
+
+.description {
+    display: flex;
+    flex-direction: column;
+    flex: 0.9;
+}
+
+.descTitle {
+    display: flex;
+    align-items: center;
+    padding-bottom: $spacer-m;
+    @media (max-width: $xl) {
+        font-size: $fs-xs;
+    }
+    @media (max-width: $md) {
+        font-size: $fs-xs;
+    }
+}
+
+.descText {
+    padding-left: $spacer-m;
+    background: $text-gradient;
+    color: transparent;
+    -webkit-background-clip: text;
+    background-clip: text;
+}
+
+.descInfo {
+    display: flex;
+    font-size: $fs-s;
+    color: var(--primary-color);
+    @media (max-width: $xl) {
+        font-size: $fs-xs;
+    }
+    @media (max-width: $md) {
+        display: none;
+    }
+}
+
+.linksBlock {
+    display: flex;
+    justify-content: space-between;
+    flex: 1;
+    margin-left: $spacer-l;
+}
+
+.linksColumn {
+    display: flex;
+    flex-direction: column;
+}
+
+.title {
+    padding-bottom: $spacer-m;
+    color: var(--primary-color);
+    @media (max-width: $xl) {
+        font-size: $fs-s;
+        padding-bottom: $spacer-s;
+    }
+    @media (max-width: $md) {
+        font-size: $fs-xs;
+    }
+}
+
+.link {
+    font-size: $fs-s;
+    text-decoration: none;
+    padding-bottom: $spacer-xs;
+    color: $grey;
+    @media (max-width: $xl) {
+        font-size: $fs-xs;
+    }
+    @media (max-width: $md) {
+        font-size: $fs-xxs;
+    }
+}
+
+.accordion {
+    display: flex;
+    flex-direction: column;
+}
+
+.rights {
+    text-align: center;
+    margin-bottom: $spacer-base;
+    color: var(--primary-color);
+    @media (max-width: $xl) {
+        font-size: $fs-s;
+    }
+    @media (max-width: $md) {
+        font-size: $fs-xs;
+    }
+}

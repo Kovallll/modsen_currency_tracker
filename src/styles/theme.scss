@@ -1,0 +1,41 @@
+@import './vars.scss';
+
+:root[data-theme='dark'] {
+    --background-color: #{$bg-dark};
+    --background-color-hover: #{$bg-dark-hover};
+
+    --primary-color: #{$primary-dark};
+    --secondary-color: #{$secondary-dark};
+
+    --card-background-color: #{$card-bg-dark};
+    --card-border: 2px solid #{$card-border-dark};
+    --card-border-radius: 8px;
+
+    --search-background-color: #{$search-bg-dark};
+    --modal-background-color: #{$modal-bg-dark};
+
+    --header-background-color: #{$black};
+    --header-nav-color: #{$white};
+
+    --footer-background-color: #{$black};
+}
+
+:root[data-theme='light'] {
+    --background-color: #{$bg-light};
+    --background-color-hover: #{$bg-light-hover};
+
+    --primary-color: #{$primary-light};
+    --secondary-color: #{$secondary-light};
+
+    --card-background-color: #{$card-bg-light};
+    --card-border: 2px solid #{$card-border-light};
+    --card-border-radius: 8px;
+
+    --search-background-color: #{$search-bg-light};
+    --modal-background-color: #{$modal-bg-light};
+
+    --header-background-color: #{$white};
+    --header-nav-color: #{$black};
+
+    --footer-background-color: #{$white};
+}

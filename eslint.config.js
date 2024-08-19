@@ -66,9 +66,12 @@ export default [
                 'error',
                 {
                     component: true,
-                    html: true,
+                    html: false,
                 },
             ],
         },
+    },
+    {
+        ignores: ['dist/*'],
     },
 ]

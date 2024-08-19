@@ -1,0 +1,71 @@
+// границы
+$min-w: 375px;
+$max-w: 1225px;
+
+// отступы
+$spacer-base: 32px;
+
+$spacer-xxxs: 0.125 * $spacer-base;
+$spacer-xxs: 0.25 * $spacer-base;
+$spacer-xs: 0.5 * $spacer-base;
+$spacer-s: 0.75 * $spacer-base;
+$spacer-m: $spacer-base;
+$spacer-l: 1.5 * $spacer-base;
+$spacer-xl: 2 * $spacer-base;
+$spacer-xxl: 2.25 * $spacer-base;
+$spacer-xxxl: 3.5 * $spacer-base;
+
+// шрифты
+$fs-base: 28px;
+
+$fs-xxxs: 12px;
+$fs-xxs: 14px;
+$fs-xs: 18px;
+$fs-s: 24px;
+$fs-m: $fs-base;
+$fs-l: 32px;
+$fs-xl: 36px;
+$fs-xxl: 76px;
+
+// цвета
+$bg-dark: #030304;
+$bg-dark-hover: #b8b8b861;
+$bg-light: #f7f7f7;
+$bg-light-hover: #58d10861;
+$primary-dark: #d9d9d9;
+$secondary-dark: #a7b2c3;
+$primary-light: #1d1c1c;
+$secondary-light: #525151;
+$grey: #898989;
+$white: #fff;
+$black: #000;
+$card-bg-dark: #202025;
+$card-bg-light: #e0e0e0;
+$modal-bg-dark: #2b2b2b;
+$modal-bg-light: #949494;
+$card-border-dark: #474747;
+$card-border-light: #3f3f3f;
+$search-bg-light: #a3a3a3;
+$search-bg-dark: #1b2028;
+$search-height-xl: 54px;
+$search-height-lg: 44px;
+$search-height-md: 38px;
+$search-height-sm: 30px;
+$text-gradient: linear-gradient(92deg, #00ce2c 0%, #aedf23 50%, #a3dc00 100%);
+$bg-gradient: linear-gradient(
+    225deg,
+    #12121220 0%,
+    #2479404f 50%,
+    #12121220 100%
+);
+
+// breakpoints
+$sm: 576px;
+$md: 768px;
+$lg: 992px;
+$xl: 1100px;
+$xxl: 1200px;
+$xxxl: 1440px;
+
+//шрифт
+$ff: Poppins, sans-serif;

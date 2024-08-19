@@ -1,0 +1,52 @@
+@import '../../styles/vars.scss';
+
+.container {
+    position: relative;
+    display: flex;
+    width: 100%;
+}
+
+.input {
+    width: 100%;
+    background: var(--background-color);
+    border: 1px solid var(--secondary-color);
+    border-radius: 12px;
+    color: var(--primary-color);
+    cursor: pointer;
+    @media (max-width: $md) {
+        border-radius: 8px;
+        font-size: $fs-s;
+    }
+    @media (max-width: $sm) {
+        font-size: $fs-xs;
+    }
+
+    &::placeholder {
+        color: var(--secondary-color);
+    }
+}
+
+.text {
+    color: var(--primary-color);
+    margin-right: $spacer-m;
+    position: static;
+    @media (max-width: $xxxl) {
+        margin-right: $spacer-s;
+    }
+    @media (max-width: $lg) {
+        font-size: $fs-xs;
+        position: absolute;
+        left: 94px;
+        bottom: 26px;
+    }
+    @media (max-width: $md) {
+        font-size: $fs-xs;
+        left: 50px;
+        bottom: 20px;
+    }
+    @media (max-width: $sm) {
+        font-size: $fs-xxs;
+        left: 32px;
+        bottom: 24px;
+    }
+}

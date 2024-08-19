@@ -1,0 +1,19 @@
+@import '../../styles/vars.scss';
+
+.chart {
+    width: 960px !important;
+    height: 400px !important;
+
+    @media (max-width: $lg) {
+        width: 720px !important;
+        height: 300px !important;
+    }
+    @media (max-width: $md) {
+        width: 520px !important;
+        height: 220px !important;
+    }
+    @media (max-width: $sm) {
+        width: 370px !important;
+        height: 150px !important;
+    }
+}
