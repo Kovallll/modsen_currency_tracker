@@ -182,6 +182,7 @@ export class Search extends PureComponent<SearchProps, SearchState> {
                             cursor={cursor}
                             onClickCurrency={this.handleClickCurrency}
                             searchedCurrencies={searchedCurrencies}
+                            data-cy="search-popup"
                         />
                     )}
                 </div>

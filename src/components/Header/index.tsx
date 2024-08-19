@@ -38,7 +38,7 @@ export const Header = () => {
                         <Link className={styles.link} to={Paths.BankCard}>
                             BankCard
                         </Link>
-                        <a className={styles.link} href={Paths.Contacts}>
+                        <a data-cy='home-link' className={styles.link} href={Paths.Contacts}>
                             Contacts
                         </a>
                     </div>

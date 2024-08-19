@@ -85,7 +85,10 @@ class TimelinePage extends Component<TimelinePageProps, TimelinePageState> {
             this.setState({
                 isCreateChart: true,
                 notify: (
-                    <p className={styles.seccessNotify}>
+                    <p
+                        className={styles.seccessNotify}
+                        data-cy="success-notify"
+                    >
                         Chart successful created
                     </p>
                 ),
@@ -93,7 +96,9 @@ class TimelinePage extends Component<TimelinePageProps, TimelinePageState> {
         } else {
             this.setState({
                 notify: (
-                    <p className={styles.errorNotify}>Error: Fill all inputs</p>
+                    <p className={styles.errorNotify} data-cy="error-notify">
+                        Error: Fill all inputs
+                    </p>
                 ),
             })
         }

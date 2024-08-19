@@ -33,7 +33,7 @@ export class ChartCreater extends Component<ChartCreaterProps> {
 
         return (
             <div {...props} className={styles.container}>
-                <div className={styles.inputs}>
+                <div className={styles.inputs} data-cy="container-inputs-chart">
                     {chartData.map((data) => (
                         <InputsChart
                             key={data.day}
@@ -48,11 +48,13 @@ export class ChartCreater extends Component<ChartCreaterProps> {
                         className={styles.addButton}
                         onClick={handleAddInputs}
                         title="Add"
+                        data-cy="add-button-inputs-chart"
                     />
                     <Button
                         createButtonRef={createButtonRef}
                         onClick={handleCreateChart}
                         title="Create"
+                        data-cy="create-chart-button"
                     />
                 </div>
             </div>
