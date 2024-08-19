@@ -25,6 +25,7 @@ export class SelectTimeline extends Component<SelectTimelineProps> {
                 className={styles.select}
                 ref={selectRef}
                 onChange={handleUpdateCurrency}
+                data-cy='select'
             >
                 {assetsData.map((currency) => (
                     <option key={currency.asset_id} value={currency.asset_id}>

@@ -13,6 +13,7 @@ export const ToggleThemeButton = ({ ...props }) => {
     return (
         <div {...props} className={styles.container}>
             <button
+                data-cy='toggle'
                 className={
                     theme === 'dark' ? styles.darkButton : styles.lightButton
                 }

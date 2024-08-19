@@ -25,6 +25,7 @@ const CurrencyCard = ({ currency, ...props }: CurrencyCardData) => {
                 {...props}
                 className={styles.container}
                 onClick={handleShowModal}
+                data-cy="card"
             >
                 <div className={styles.image}>{currencies[asset_id]}</div>
                 <div className={styles.info}>

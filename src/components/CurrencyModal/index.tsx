@@ -34,7 +34,7 @@ const CurrencyModal = ({
     const { priceUsd, start, end } = description
     return (
         <div {...props} className={styles.container}>
-            <div className={styles.window}>
+            <div className={styles.window} data-cy="modal">
                 <button className={styles.close} onClick={onClose}>
                     <CloseIcon />
                 </button>

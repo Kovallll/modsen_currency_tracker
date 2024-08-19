@@ -47,6 +47,7 @@ export class CandlestickChart extends Component<CandlestickChartProps> {
                 {...props}
                 className={styles.chart}
                 ref={this.chartRef}
+                data-cy="chart"
             ></canvas>
         )
     }

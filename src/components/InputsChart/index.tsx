@@ -69,13 +69,14 @@ export class InputsChart extends Component<InputsChartProps> {
     render() {
         const { data, ...props } = this.props
         return (
-            <div {...props} className={styles.container}>
+            <div {...props} className={styles.container} data-cy="inputs-chart">
                 <Input
                     handleChange={this.handleChangeOpen}
                     searchValue={data.open}
                     text="open"
                     className={styles.input}
                     placeholder="open"
+                    data-cy="input-chart"
                 />
                 <Input
                     handleChange={this.handleChangeClose}
@@ -98,7 +99,11 @@ export class InputsChart extends Component<InputsChartProps> {
                     className={styles.input}
                     placeholder="high"
                 />
-                <div onClick={this.handleDelete} className={styles.basket}>
+                <div
+                    onClick={this.handleDelete}
+                    className={styles.basket}
+                    data-cy="delete-button-inputs-chart"
+                >
                     <Basket />
                 </div>
             </div>
