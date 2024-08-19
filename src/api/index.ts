@@ -23,7 +23,7 @@ export const getAllAssets = async () => {
             localStorage.getItem('assetsData') ?? JSON.stringify(null)
         )
 
-        if (data !== null && getDateTimer()) {
+        if (data !== null && getDateTimer(60)) {
             return data
         } else {
             const { data } =
@@ -57,7 +57,7 @@ export const getLastUpdated = async () => {
         const data: LastUpdated = JSON.parse(
             localStorage.getItem('lastUpdated') ?? JSON.stringify(null)
         )
-        if (data !== null && getDateTimer()) {
+        if (data !== null && getDateTimer(60)) {
             return data
         } else {
             const { data } =
@@ -83,7 +83,7 @@ export const getAssetRate = async (assetId: Currencies) => {
         const currency = data.find(
             (currency) => currency.asset_id_base === assetId
         )
-        if (currency && getDateTimer()) {
+        if (currency && getDateTimer(60)) {
             return currency
         } else {
             const { data } = await axios.get<CurrencyRateData>(
