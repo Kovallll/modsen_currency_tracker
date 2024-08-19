@@ -1,5 +1,5 @@
-export const getDateTimer = () => {
-    const currentDay = new Date().getDate()
+export const getDateTimer = (delay: number) => {
+    const currentDay = new Date().getMinutes()
     let startDay = JSON.parse(
         localStorage.getItem('assetsTimer') ?? JSON.stringify(null)
     )
@@ -10,7 +10,7 @@ export const getDateTimer = () => {
     }
 
     const timer = Math.abs(startDay - currentDay)
-    if (timer < 1) {
+    if (timer < delay) {
         return true
     } else {
         localStorage.removeItem('assetRate')
