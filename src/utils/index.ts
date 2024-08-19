@@ -1,1 +1,0 @@
-export { getDateTimer } from './dateTimer'
