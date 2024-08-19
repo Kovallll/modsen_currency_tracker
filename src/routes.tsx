@@ -1,5 +1,5 @@
 import {
-    createBrowserRouter,
+    createHashRouter,
     createRoutesFromElements,
     Route,
 } from 'react-router-dom'
@@ -18,7 +18,7 @@ const routes = [
     { path: Paths.NotFound, element: <NotFound /> },
 ]
 
-export const router = createBrowserRouter(
+export const router = createHashRouter(
     createRoutesFromElements(
         <Route path={Paths.Home} element={<Root />}>
             {routes.map(({ path, element }) => (

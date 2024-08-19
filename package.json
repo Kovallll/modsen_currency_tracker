@@ -4,8 +4,9 @@
         "chart.js": "^4.4.3",
         "chartjs-chart-financial": "^0.2.1",
         "cross-env": "^7.0.3",
-        "mapbox-gl": "^3.6.0",
+        "gh-pages": "^6.1.1",
         "luxon": "^3.5.0",
+        "mapbox-gl": "^3.6.0",
         "react": "^18.3.1",
         "react-chartjs-2": "^5.2.0",
         "react-dom": "^18.3.1",
@@ -18,10 +19,12 @@
         "build-prod": "webpack --config webpack.prod.js",
         "clean": "rd /s /q dist",
         "prepare": "husky",
+        "deploy": "gh-pages -d dist",
         "lint": "eslint",
         "lint:fix": "eslint --fix",
         "format": "prettier . --write"
     },
+    "homepage": "https://kovallll.github.io/modsen_currency_tracker",
     "babel": {
         "presets": [
             "@babel/env",
