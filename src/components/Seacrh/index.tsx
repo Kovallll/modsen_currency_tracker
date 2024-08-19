@@ -158,6 +158,18 @@ export class Search extends PureComponent<SearchProps, SearchState> {
         }
     }
 
+    handleMouseOver = () => {
+        this.setState({
+            cursor: -1,
+        })
+    }
+
+    handleMouseLeave = () => {
+        this.setState({
+            cursor: 0,
+        })
+    }
+
     render() {
         const { searchedCurrencies, isFocus, cursor } = this.state
         const { searchValue, handleChange, text, className, ...props } =
@@ -183,6 +195,8 @@ export class Search extends PureComponent<SearchProps, SearchState> {
                             onClickCurrency={this.handleClickCurrency}
                             searchedCurrencies={searchedCurrencies}
                             data-cy="search-popup"
+                            onMouseOver={this.handleMouseOver}
+                            onMouseLeave={this.handleMouseLeave}
                         />
                     )}
                 </div>
