@@ -2,17 +2,13 @@ import { Component, createRef, lazy, Suspense } from 'react'
 
 import * as styles from './styles.module.scss'
 
-import { MapLoader } from '@/components/Map/Loader'
 import { Search } from '@/components/Seacrh'
 import { Currencies } from '@/constants'
+import { MapLoader } from '@/pages/BankCard/Map/Map/Loader'
+import { BankCardPageProps, BankCardPageState } from '@/types'
 
-const Map = lazy(() => import('@/components/Map'))
+const Map = lazy(() => import('./Map/Map'))
 
-interface BankCardPageState {
-    searchValue: string
-}
-
-type BankCardPageProps = object
 class BankCardPage extends Component<BankCardPageProps, BankCardPageState> {
     private mapContainer: React.RefObject<HTMLDivElement>
 
@@ -36,7 +32,7 @@ class BankCardPage extends Component<BankCardPageProps, BankCardPageState> {
         const { searchValue } = this.state
 
         return (
-            <div className={styles.container}>
+            <main className={styles.container}>
                 <Search
                     text="Search currency in the bank"
                     searchValue={searchValue}
@@ -50,7 +46,7 @@ class BankCardPage extends Component<BankCardPageProps, BankCardPageState> {
                         mapContainer={this.mapContainer}
                     />
                 </Suspense>
-            </div>
+            </main>
         )
     }
 }

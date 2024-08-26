@@ -1,6 +1,6 @@
 describe('the Timeline Page', () => {
     beforeEach(() => {
-        cy.visit('/timeline')
+        cy.visit('#/timeline')
     })
 
     it('count of currency select', () => {
@@ -28,12 +28,6 @@ describe('the Timeline Page', () => {
             .should('have.length', 1)
     })
 
-    it('create chart', () => {
-        cy.get('[data-cy="create-chart-button"]').click()
-        cy.get('[data-cy="chart"]')
-        cy.get('[data-cy="success-notify"]')
-    })
-
     it('create chart with empty input', () => {
         cy.get('[data-cy="input-chart"]').clear()
         cy.get('[data-cy="create-chart-button"]').click()
@@ -52,5 +46,14 @@ describe('the Timeline Page', () => {
 
         cy.get('[data-cy="input-chart"]').clear().type('5e5')
         cy.get('[data-cy="input-chart"]').should('have.value', '5e5')
+    })
+
+    it.only('create chart', () => {
+        Cypress._.times(30, () => {
+            cy.get('[data-cy="add-button-inputs-chart"]').click()
+        })
+        cy.get('[data-cy="create-chart-button"]').click()
+        cy.get('[data-cy="chart"]')
+        cy.get('[data-cy="success-notify"]')
     })
 })

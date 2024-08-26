@@ -1,10 +1,8 @@
-@import '../../styles/vars.scss';
+@import '@scss/vars';
+@import '@scss/mixins';
 
 .container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    @include flex-column-center;
 }
 
 .text {
@@ -12,6 +10,7 @@
     margin-bottom: $spacer-xs;
     text-align: center;
     font-size: $fs-xl;
+
     @media (max-width: $xl) {
         font-size: $fs-l;
     }
@@ -36,6 +35,7 @@
     background: var(--search-background-color);
     border: none;
     padding-left: $spacer-s;
+
     @media (max-width: $lg) {
         height: $search-height-lg;
         padding-left: $spacer-xs;

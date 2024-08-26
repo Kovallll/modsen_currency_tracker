@@ -1,25 +1,12 @@
 import { createRef, PureComponent } from 'react'
+import classNames from 'classnames'
 
 import { CurrencyPopup } from '../CurrencyPopup'
 import { Input } from '../Input'
 import * as styles from './styles.module.scss'
 
 import { Currencies } from '@/constants'
-
-interface SearchProps extends React.InputHTMLAttributes<HTMLAreaElement> {
-    searchValue: string
-    handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void
-    handleChangePopupValue: (value: Currencies) => void
-    text?: string
-    type?: string
-    className?: string
-}
-
-interface SearchState {
-    searchedCurrencies: Currencies[]
-    isFocus: boolean
-    cursor: number
-}
+import { SearchProps, SearchState } from '@/types'
 
 export class Search extends PureComponent<SearchProps, SearchState> {
     static defaultProps = {
@@ -160,7 +147,7 @@ export class Search extends PureComponent<SearchProps, SearchState> {
 
     handleMouseOver = () => {
         this.setState({
-            cursor: -1,
+            cursor: -100,
         })
     }
 
@@ -174,13 +161,15 @@ export class Search extends PureComponent<SearchProps, SearchState> {
         const { searchedCurrencies, isFocus, cursor } = this.state
         const { searchValue, handleChange, text, className, ...props } =
             this.props
+
+        const searchStyle = classNames(styles.container, className)
         return (
-            <search {...props} className={`${styles.container} ${className}`}>
-                <p className={styles.text}>{text}</p>
+            <search {...props} className={searchStyle}>
+                {text && <p className={styles.text}>{text}</p>}
                 <div className={styles.seacrhBlock}>
                     <Input
                         type="search"
-                        searchValue={searchValue}
+                        value={searchValue}
                         handleChange={handleChange}
                         placeholder="seacrh"
                         className={styles.search}

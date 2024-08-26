@@ -1,19 +1,23 @@
+import classNames from 'classnames'
+
+import { title } from './config'
 import * as styles from './styles.module.scss'
 
-interface LastUpdatedProps {
-    timeUpdate: RegExpMatchArray | null
-    className?: string
-}
+import { LastUpdatedProps } from '@/types'
 
-export const LastUpdated = ({
+export const LastUpdatedAt = ({
     timeUpdate,
     className,
     ...props
 }: LastUpdatedProps) => {
+    const containerStyle = classNames(styles.container, className)
+
     return (
-        <div {...props} className={`${styles.container} ${className}`}>
+        <div {...props} className={containerStyle}>
             <div className={styles.circle} />
-            <p className={styles.text}>Last updated at {timeUpdate}</p>
+            <h3 className={styles.text}>
+                {title} {timeUpdate}
+            </h3>
         </div>
     )
 }

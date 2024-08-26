@@ -1,4 +1,4 @@
-@import '../../styles/vars.scss';
+@import '@scss/vars';
 
 .button {
     width: 100%;
@@ -7,6 +7,7 @@
     border: 1px solid var(--secondary-color);
     border-radius: 12px;
     font-size: $fs-l;
+
     @media (max-width: $lg) {
         font-size: $fs-m;
     }

@@ -1,4 +1,8 @@
-@import '../../styles/vars.scss';
+@import '@scss/vars';
+@import '@scss/mixins';
+
+$sizeIcon: 40px;
+$transitionTime: 0.5s;
 
 .container {
     overflow: hidden;
@@ -8,15 +12,13 @@
 }
 
 .head {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    @include flex-row-sb;
 }
 
 .visibleContent {
     transition:
         max-height 4s,
-        padding 0.4s;
+        padding $transitionTime;
     display: flex;
     flex-direction: column;
     max-height: 100vh;
@@ -28,7 +30,7 @@
 .hideContent {
     transition:
         max-height 1s,
-        padding 0.5s;
+        padding $transitionTime;
     padding: 0 $spacer-s;
     max-height: 0;
 }
@@ -39,20 +41,20 @@
 }
 
 .openIcon {
-    transition: all 0.5s;
-    width: 40px;
-    height: 40px;
+    transition: all $transitionTime;
+    width: $sizeIcon;
+    height: $sizeIcon;
 }
 
 .closeIcon {
-    transition: all 0.5s;
+    transition: all $transitionTime;
     transform: rotate(180deg);
-    width: 40px;
-    height: 40px;
+    width: $sizeIcon;
+    height: $sizeIcon;
 }
 
 .text {
-    padding-top: 2px;
+    padding-top: 10px;
     margin-bottom: $spacer-xs;
     font-size: $fs-xs;
     color: var(--primary-color);

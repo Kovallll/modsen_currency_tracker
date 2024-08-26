@@ -1,5 +1,9 @@
+@import '@scss/mixins';
+
 .container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    @include flex-row-center;
+}
+
+.title {
+    color: var(--primary-color);
 }

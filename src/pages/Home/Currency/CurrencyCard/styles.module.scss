@@ -1,0 +1,55 @@
+@import '@scss/vars';
+@import '@scss/mixins';
+
+.container {
+    @include flex-row-start;
+    background: var(--card-background-color);
+    width: 420px;
+    height: 110px;
+    padding: $spacer-s;
+    border: var(--card-border);
+    border-radius: 10px;
+    cursor: pointer;
+    transition: transform 0.5s;
+
+    &:hover {
+        transform: scale(1.1);
+    }
+
+    @media (max-width: $sm) {
+        width: 370px;
+        height: 90px;
+    }
+}
+
+.image {
+    @include flex-row-center;
+    margin-right: $spacer-s;
+    transform: scale(0.8);
+
+    @media (max-width: $sm) {
+        transform: scale(0.7);
+    }
+}
+
+.info {
+    @include flex-column-start;
+}
+
+.title {
+    font-size: $fs-m;
+    color: var(--primary-color);
+
+    @media (max-width: $sm) {
+        font-size: $fs-s;
+    }
+}
+
+.subtitle {
+    font-size: $fs-s;
+    color: var(--secondary-color);
+
+    @media (max-width: $sm) {
+        font-size: $fs-xs;
+    }
+}

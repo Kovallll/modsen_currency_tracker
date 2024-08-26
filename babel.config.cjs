@@ -16,7 +16,7 @@ const config = {
         '@babel/preset-react',
         '@babel/preset-typescript',
     ],
-    plugins,
+    plugins: [['react-remove-properties', { properties: ['data-cy'] }]],
 }
 
 module.exports = config

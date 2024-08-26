@@ -1,8 +1,7 @@
 import { Currencies } from '@/constants'
 
-export interface CurrencyCardData {
-    currency: CurrencyAssetsData
-}
+export * from './props'
+export * from './state'
 
 export interface CurrencyAssetsDataResponse {
     asset_id: Currencies
@@ -17,12 +16,6 @@ export interface CurrencyAssetsData {
     asset_id: Currencies
     title: string
     subtitle: number
-    priceUsd: number
-    start: string
-    end: string
-}
-
-export interface DescriptionData {
     priceUsd: number
     start: string
     end: string
@@ -72,4 +65,19 @@ export interface InputData {
     close: string
     low: string
     day: number
+}
+
+export interface Feature {
+    properties: { description: string; title: string }
+}
+
+export interface MarkerObject {
+    id: number
+    marker: mapboxgl.Marker
+}
+
+export type AssetsDataContextType = {
+    assetsData: CurrencyAssetsData[]
+    loading: boolean
+    error: string | null
 }

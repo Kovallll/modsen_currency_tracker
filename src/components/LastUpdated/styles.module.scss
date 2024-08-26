@@ -1,16 +1,30 @@
-@import '../../styles/vars.scss';
+@import '@scss/vars';
+@import '@scss/mixins';
+
+$shadowGlowingStart:
+    1px 0px 15px #017c34,
+    -1px 0px 15px #017c34;
+
+$shadowGlowingMiddle:
+    1px 0px 15px #02c352,
+    -1px 0px 15px #02c352;
+
+$shadowGlowingEnd:
+    1px 0px 15px #ecf9f2,
+    -1px 0px 15px #ecf9f2;
+
+$bgCircleStart: #00bc4f;
+$bgCircleMiddle: #00bc4f;
+$bgCircleEnd: #00bc4f;
 
 .container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    @include flex-row-center;
 }
 
 .circle {
     height: 20px;
     width: 20px;
     border-radius: 50%;
-    background: #00bc4f;
     margin-right: $spacer-m;
     animation: glowing 5300ms infinite;
 
@@ -28,43 +42,30 @@
 
 @keyframes glowing {
     0% {
-        box-shadow:
-            1px 0px 15px #017c34,
-            -1px 0px 15px #017c34;
-        background: #00bc4f;
+        box-shadow: $shadowGlowingStart;
+        background: $bgCircleStart;
     }
     25% {
-        box-shadow:
-            1px 0px 15px #02c352,
-            -1px 0px 15px #02c352;
-        background: #3edb7f;
+        box-shadow: $shadowGlowingMiddle;
+        background: $bgCircleMiddle;
     }
     50% {
-        box-shadow:
-            1px 0px 15px #ecf9f2,
-            -1px 0px 15px #ecf9f2;
-        background: #e7f9ee;
+        box-shadow: $shadowGlowingEnd;
+        background: $bgCircleEnd;
     }
     75% {
-        box-shadow:
-            1px 0px 15px #03f869,
-            -1px 0px 15px #03f869;
-        background: #3edb7f;
+        box-shadow: $shadowGlowingMiddle;
+        background: $bgCircleMiddle;
     }
     100% {
-        box-shadow:
-            1px 0px 15px #017c34,
-            -1px 0px 15px #017c34;
-        background: #00bc4f;
+        box-shadow: $shadowGlowingStart;
+        background: $bgCircleStart;
     }
 }
 
 .text {
     color: var(--primary-color);
-
-    @media (max-width: $xxl) {
-        font-size: $fs-m;
-    }
+    font-size: $fs-m;
     @media (max-width: $xl) {
         font-size: $fs-s;
     }

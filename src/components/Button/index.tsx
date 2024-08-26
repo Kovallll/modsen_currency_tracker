@@ -1,13 +1,9 @@
 import { PureComponent } from 'react'
+import classNames from 'classnames'
 
 import * as styles from './styles.module.scss'
 
-interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-    onClick: () => void
-    title: string
-    className?: string
-    createButtonRef?: React.RefObject<HTMLButtonElement>
-}
+import { ButtonProps } from '@/types'
 
 export class Button extends PureComponent<ButtonProps> {
     constructor(props: ButtonProps) {
@@ -17,10 +13,12 @@ export class Button extends PureComponent<ButtonProps> {
     render() {
         const { className, onClick, title, createButtonRef, ...props } =
             this.props
+
+        const buttonStyle = classNames(styles.button, className)
         return (
             <button
                 {...props}
-                className={`${styles.button} ${className}`}
+                className={buttonStyle}
                 onClick={onClick}
                 ref={createButtonRef}
             >

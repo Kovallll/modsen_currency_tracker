@@ -1,0 +1,27 @@
+@import '@scss/vars';
+@import '@scss/mixins';
+
+.description {
+    @include flex-column-center;
+    margin-bottom: $spacer-s;
+
+    &p {
+        color: var(--primary-color);
+        font-size: $fs-m;
+
+        @media (max-width: $md) {
+            font-size: $fs-s;
+        }
+        @media (max-width: $sm) {
+            font-size: $fs-xs;
+        }
+    }
+}
+
+.text {
+    color: var(--primary-color);
+    font-size: $fs-m;
+    @media (max-width: $sm) {
+        font-size: $fs-s;
+    }
+}

@@ -1,0 +1,86 @@
+@import '@scss/vars';
+@import '@scss/mixins';
+
+.seccessNotify {
+    @include flex-row-center;
+    position: fixed;
+    padding: $spacer-m $spacer-xxl;
+    height: 70px;
+    float: right;
+    top: 120px;
+    bottom: 0;
+    right: 20px;
+    border-radius: 12px;
+    flex-flow: column nowrap;
+    z-index: 10;
+    background: $bg-success-notify;
+    color: var(--primary-color);
+    font-size: $fs-m;
+
+    @media (max-width: $xl) {
+        top: 100px;
+        right: 14px;
+    }
+    @media (max-width: $lg) {
+        padding: $spacer-s $spacer-l;
+        height: 60px;
+        top: 90px;
+        right: 12px;
+        font-size: $fs-s;
+    }
+    @media (max-width: $md) {
+        padding: $spacer-xxs $spacer-m;
+        height: 50px;
+        top: 76px;
+        right: 10px;
+        font-size: $fs-xs;
+    }
+    @media (max-width: $sm) {
+        height: 40px;
+        top: 66px;
+        right: 8px;
+        font-size: $fs-xxs;
+    }
+}
+
+.errorNotify {
+    @include flex-row-center;
+    position: fixed;
+    padding: $spacer-m $spacer-xxl;
+    height: 70px;
+    float: right;
+    top: 120px;
+    bottom: 0;
+    right: 20px;
+    border-radius: 12px;
+    flex-flow: column nowrap;
+    z-index: 10;
+    background: $bg-error-notify;
+    color: var(--primary-color);
+    font-size: $fs-m;
+
+    @media (max-width: $xl) {
+        top: 100px;
+        right: 14px;
+    }
+    @media (max-width: $lg) {
+        padding: $spacer-s $spacer-l;
+        height: 60px;
+        top: 90px;
+        right: 12px;
+        font-size: $fs-s;
+    }
+    @media (max-width: $md) {
+        padding: $spacer-xxs $spacer-m;
+        height: 50px;
+        top: 76px;
+        right: 10px;
+        font-size: $fs-xs;
+    }
+    @media (max-width: $sm) {
+        height: 40px;
+        top: 66px;
+        right: 8px;
+        font-size: $fs-xxs;
+    }
+}

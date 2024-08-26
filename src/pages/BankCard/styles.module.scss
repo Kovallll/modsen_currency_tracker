@@ -1,10 +1,10 @@
-@import '../../styles/vars.scss';
+@import '@scss/vars';
+@import '@scss/mixins';
 
 .container {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
+    @include flex-column-center;
     margin: $spacer-xl 0;
+
     @media (max-width: $lg) {
         margin: $spacer-l 0;
     }
@@ -19,6 +19,7 @@
 .search {
     width: 60%;
     margin-bottom: $spacer-l;
+
     @media (max-width: $xl) {
         margin-bottom: $spacer-m;
     }

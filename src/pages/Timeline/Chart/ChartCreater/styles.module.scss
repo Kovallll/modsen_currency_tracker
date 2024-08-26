@@ -1,0 +1,47 @@
+@import '@scss/vars';
+@import '@scss/mixins';
+
+.container {
+    display: flex;
+    flex-direction: column;
+    margin: $spacer-m 0;
+    max-width: 100%;
+    width: 100%;
+}
+
+.inputs {
+    @include flex-column-center;
+    max-height: 350px;
+    overflow-y: scroll;
+    &::-webkit-scrollbar {
+        width: 10px;
+    }
+    &::-webkit-scrollbar-track {
+        background: var(--background-color);
+    }
+    &::-webkit-scrollbar-thumb {
+        background-color: var(--primary-color);
+        border-radius: 20px;
+        border: 3px solid var(--secondary-color);
+    }
+}
+
+.buttons {
+    display: flex;
+}
+
+.addButton {
+    margin-right: $spacer-m;
+    cursor: pointer;
+
+    @media (max-width: $md) {
+        margin-right: $spacer-s;
+    }
+    @media (max-width: $sm) {
+        margin-right: $spacer-xs;
+    }
+}
+
+.createButton {
+    cursor: pointer;
+}

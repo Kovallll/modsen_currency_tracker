@@ -1,0 +1,76 @@
+@import '@scss/vars';
+@import '@scss/mixins';
+
+.container {
+    @include flex-column-start;
+}
+
+.chartInfo {
+    @include flex-row-start;
+    margin-bottom: $spacer-m;
+}
+
+.icon {
+    @include flex-row-center;
+    min-width: 80px;
+    min-height: 80px;
+    transform: scale(1);
+
+    @media (max-width: $lg) {
+        min-width: 68px;
+        min-height: 68px;
+        transform: scale(0.85);
+    }
+    @media (max-width: $md) {
+        min-width: 56px;
+        min-height: 56px;
+        transform: scale(0.7);
+    }
+    @media (max-width: $sm) {
+        min-width: 50px;
+        min-height: 50px;
+        transform: scale(0.6);
+    }
+}
+
+.chartText {
+    @include flex-column-center;
+    margin-left: $spacer-s;
+
+    @media (max-width: $lg) {
+        margin-left: $spacer-xs;
+    }
+    @media (max-width: $md) {
+        margin-left: 0;
+    }
+}
+
+.chartTitle {
+    color: var(--primary-color);
+    font-size: $fs-l;
+
+    @media (max-width: $lg) {
+        font-size: $fs-m;
+    }
+    @media (max-width: $md) {
+        font-size: $fs-s;
+    }
+    @media (max-width: $sm) {
+        font-size: $fs-xs;
+    }
+}
+
+.chartSubtitle {
+    color: var(--primary-color);
+    font-size: $fs-s;
+
+    @media (max-width: $lg) {
+        font-size: $fs-xs;
+    }
+    @media (max-width: $md) {
+        font-size: $fs-xxs;
+    }
+    @media (max-width: $sm) {
+        font-size: $fs-xxxs;
+    }
+}

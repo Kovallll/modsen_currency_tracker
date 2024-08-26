@@ -1,4 +1,5 @@
-@import '../../styles/vars.scss';
+@import '@scss/vars';
+@import '@scss/mixins';
 
 $currencyHeight-xl: 58px;
 $currencyHeight-lg: 53px;
@@ -13,14 +14,13 @@ $countVisibleCurrency-sm: 4;
 .container {
     position: absolute;
     top: $search-height-xl + 1;
-    display: flex;
-    flex-direction: column;
     background: var(--background-color);
     width: 100%;
-    z-index: 100;
+    z-index: 10;
     border-radius: 12px;
     max-height: calc($currencyHeight-xl * $countVisibleCurrency-xl);
     overflow-y: auto;
+
     @media (max-width: $lg) {
         max-height: calc($currencyHeight-lg * $countVisibleCurrency-lg);
         top: $search-height-lg + 1;
@@ -39,9 +39,11 @@ $countVisibleCurrency-sm: 4;
     display: flex;
     width: 100%;
     padding: $spacer-xxs 0;
+
     &:hover {
         background: var(--background-color-hover);
     }
+
     @media (max-width: $md) {
         padding: $spacer-xxxs 0;
     }
@@ -55,6 +57,7 @@ $countVisibleCurrency-sm: 4;
     padding-left: $spacer-xs;
     color: var(--primary-color);
     font-size: $fs-m;
+
     @media (max-width: $lg) {
         font-size: $fs-s;
     }

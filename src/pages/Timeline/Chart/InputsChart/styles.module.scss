@@ -1,0 +1,60 @@
+@import '@scss/vars';
+@import '@scss/mixins';
+
+.container {
+    @include flex-row-center;
+    margin-bottom: $spacer-s;
+
+    @media (max-width: $md) {
+        margin-bottom: $spacer-xs;
+    }
+    @media (max-width: $sm) {
+        font-size: $fs-xxs;
+        margin-bottom: $spacer-xxs;
+    }
+}
+
+.day {
+    display: flex;
+    min-width: 60px;
+    font-size: $fs-s;
+    color: var(--primary-color);
+    @media (max-width: $lg) {
+        min-width: 50px;
+    }
+    @media (max-width: $md) {
+        font-size: $fs-xs;
+        min-width: 40px;
+    }
+    @media (max-width: $sm) {
+        font-size: $fs-xxs;
+        min-width: 30px;
+    }
+}
+
+.input {
+    margin-right: $spacer-s;
+
+    @media (max-width: $md) {
+        margin-right: $spacer-xs;
+    }
+    @media (max-width: $sm) {
+        margin-right: $spacer-xxs;
+    }
+}
+
+.basket {
+    @include flex-row-center;
+    min-width: 40px;
+    min-height: 40px;
+    cursor: pointer;
+
+    @media (max-width: $md) {
+        min-width: 34px;
+        min-height: 34px;
+    }
+    @media (max-width: $sm) {
+        min-width: 28px;
+        min-height: 28px;
+    }
+}

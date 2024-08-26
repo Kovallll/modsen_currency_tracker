@@ -1,17 +1,12 @@
-import { useContext } from 'react'
-
 import * as styles from './styles.module.scss'
 
-import { CurrencyTable } from '@/components/CurrencyTable'
-import { AssetsDataContext } from '@/providers/AssetsProvider'
+import CurrencyTable from '@/pages/Home/Currency/CurrencyTable'
 
 const HomePage = () => {
-    const assetsData = useContext(AssetsDataContext)
-
     return (
-        <div className={styles.container}>
-            <CurrencyTable currencyData={assetsData} title="Stocks" />
-        </div>
+        <main className={styles.container}>
+            <CurrencyTable title="Stocks" />
+        </main>
     )
 }
 

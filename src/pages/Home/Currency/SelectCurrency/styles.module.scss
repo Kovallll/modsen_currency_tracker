@@ -1,0 +1,19 @@
+@import '@scss/vars';
+@import '@scss/mixins';
+
+.container {
+    @include flex-row-center;
+    width: 100%;
+    border: none;
+    font-size: $fs-m;
+    background-color: var(--background-color);
+    border-radius: 12px;
+    color: var(--primary-color);
+
+    @media (max-width: $md) {
+        font-size: $fs-s;
+    }
+    @media (max-width: $sm) {
+        font-size: $fs-xs;
+    }
+}
