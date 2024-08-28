@@ -1,4 +1,4 @@
-@import './vars.scss';
+@import './vars';
 
 :root[data-theme='dark'] {
     --background-color: #{$bg-dark};

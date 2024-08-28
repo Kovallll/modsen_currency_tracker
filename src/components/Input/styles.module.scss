@@ -1,8 +1,9 @@
-@import '../../styles/vars.scss';
+@import '@scss/vars';
+@import '@scss/mixins';
 
 .container {
+    @include flex-row-center;
     position: relative;
-    display: flex;
     width: 100%;
 }
 
@@ -13,6 +14,7 @@
     border-radius: 12px;
     color: var(--primary-color);
     cursor: pointer;
+
     @media (max-width: $md) {
         border-radius: 8px;
         font-size: $fs-s;
@@ -30,13 +32,14 @@
     color: var(--primary-color);
     margin-right: $spacer-m;
     position: static;
+
     @media (max-width: $xxxl) {
         margin-right: $spacer-s;
     }
     @media (max-width: $lg) {
         font-size: $fs-xs;
         position: absolute;
-        left: 94px;
+        left: 80px;
         bottom: 26px;
     }
     @media (max-width: $md) {
@@ -47,6 +50,6 @@
     @media (max-width: $sm) {
         font-size: $fs-xxs;
         left: 32px;
-        bottom: 24px;
+        bottom: 18px;
     }
 }

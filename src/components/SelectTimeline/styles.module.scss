@@ -1,10 +1,12 @@
-@import '../../styles/vars.scss';
+@import '@scss/vars';
 
 .select {
     width: 300px;
     background: var(--background-color);
     color: var(--primary-color);
     font-size: $fs-l;
+    cursor: pointer;
+
     @media (max-width: $lg) {
         width: 280px;
         font-size: $fs-m;

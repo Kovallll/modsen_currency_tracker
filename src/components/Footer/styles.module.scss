@@ -1,13 +1,12 @@
-@import '../../styles/vars.scss';
+@import '@scss/vars';
+@import '@scss/mixins';
 
 .container {
+    @include flex-column-center;
     width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
     padding: 0 $spacer-xxl;
     background: var(--footer-background-color);
+
     @media (max-width: $xxl) {
         padding: 0 $spacer-xl;
     }
@@ -23,10 +22,8 @@
 }
 
 .info {
+    @include flex-row-sb;
     max-width: $max-w;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
     margin-top: $spacer-xs;
     margin-bottom: $spacer-xl;
 
@@ -36,15 +33,14 @@
 }
 
 .description {
-    display: flex;
-    flex-direction: column;
+    @include flex-column-start;
     flex: 0.9;
 }
 
 .descTitle {
-    display: flex;
-    align-items: center;
+    @include flex-row-center;
     padding-bottom: $spacer-m;
+
     @media (max-width: $xl) {
         font-size: $fs-xs;
     }
@@ -62,9 +58,10 @@
 }
 
 .descInfo {
-    display: flex;
+    @include flex-row-center;
     font-size: $fs-s;
     color: var(--primary-color);
+
     @media (max-width: $xl) {
         font-size: $fs-xs;
     }
@@ -74,20 +71,23 @@
 }
 
 .linksBlock {
-    display: flex;
-    justify-content: space-between;
+    @include flex-row-sb;
     flex: 1;
     margin-left: $spacer-l;
+
+    @media (max-width: $md) {
+        display: none;
+    }
 }
 
 .linksColumn {
-    display: flex;
-    flex-direction: column;
+    @include flex-column-start;
 }
 
 .title {
     padding-bottom: $spacer-m;
     color: var(--primary-color);
+
     @media (max-width: $xl) {
         font-size: $fs-s;
         padding-bottom: $spacer-s;
@@ -102,6 +102,7 @@
     text-decoration: none;
     padding-bottom: $spacer-xs;
     color: $grey;
+
     @media (max-width: $xl) {
         font-size: $fs-xs;
     }
@@ -111,14 +112,18 @@
 }
 
 .accordion {
-    display: flex;
-    flex-direction: column;
+    @include flex-column-center;
+
+    @media (min-width: $md) {
+        display: none;
+    }
 }
 
 .rights {
     text-align: center;
     margin-bottom: $spacer-base;
     color: var(--primary-color);
+
     @media (max-width: $xl) {
         font-size: $fs-s;
     }

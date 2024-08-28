@@ -1,0 +1,93 @@
+@import '@scss/vars';
+@import '@scss/mixins';
+
+.container {
+    @include flex-column-start;
+}
+
+.chartInfo {
+    @include flex-row-start;
+    margin-bottom: $spacer-m;
+}
+
+.icon {
+    @include flex-row-center;
+    min-width: 80px;
+    min-height: 80px;
+    transform: scale(1);
+
+    @media (max-width: $lg) {
+        min-width: 68px;
+        min-height: 68px;
+        transform: scale(0.85);
+    }
+    @media (max-width: $md) {
+        min-width: 56px;
+        min-height: 56px;
+        transform: scale(0.7);
+    }
+    @media (max-width: $sm) {
+        min-width: 50px;
+        min-height: 50px;
+        transform: scale(0.6);
+    }
+}
+
+.chartText {
+    @include flex-column-center;
+    margin-left: $spacer-s;
+
+    @media (max-width: $lg) {
+        margin-left: $spacer-xs;
+    }
+    @media (max-width: $md) {
+        margin-left: 0;
+    }
+}
+
+.text {
+    width: 200px;
+    height: 40px;
+    animation: skeleton-loading 2s linear infinite alternate;
+
+    @media (max-width: $lg) {
+        width: 160px;
+        height: 35px;
+    }
+    @media (max-width: $md) {
+        width: 120px;
+        height: 30px;
+    }
+    @media (max-width: $sm) {
+        width: 80px;
+        height: 20px;
+    }
+}
+
+.chart {
+    width: 960px;
+    height: 400px;
+    animation: skeleton-loading 2s linear infinite alternate;
+
+    @media (max-width: $lg) {
+        width: 720px;
+        height: 300px;
+    }
+    @media (max-width: $md) {
+        width: 520px;
+        height: 220px;
+    }
+    @media (max-width: $sm) {
+        width: 370px;
+        height: 150px;
+    }
+}
+
+@keyframes skeleton-loading {
+    0% {
+        background-color: hsl(200, 20%, 80%);
+    }
+    100% {
+        background-color: hsl(200, 20%, 95%);
+    }
+}

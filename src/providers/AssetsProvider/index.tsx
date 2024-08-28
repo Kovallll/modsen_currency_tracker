@@ -2,32 +2,34 @@ import { createContext, useEffect, useState } from 'react'
 
 import { getAllAssets } from '@/api'
 import { defaultAllAssets } from '@/constants'
-import { CurrencyAssetsData } from '@/types'
+import useFetch from '@/hooks/use-fetch'
+import {
+    AssetsDataContextType,
+    AssetsProviderProps,
+    CurrencyAssetsData,
+} from '@/types'
 
-interface AssetsProviderProps {
-    children: React.ReactNode
-}
-
-type AssetsDataContext = CurrencyAssetsData[]
-
-export const AssetsDataContext = createContext<AssetsDataContext>([
-    defaultAllAssets,
-])
+export const AssetsDataContext = createContext<AssetsDataContextType>({
+    assetsData: [defaultAllAssets],
+    loading: true,
+    error: '',
+})
 
 export const AssetsProvider = ({ children }: AssetsProviderProps) => {
     const [assetsData, setAssetsData] = useState<CurrencyAssetsData[]>([
         defaultAllAssets,
     ])
+    const { data, loading, error } = useFetch<
+        CurrencyAssetsData[],
+        () => Promise<CurrencyAssetsData[]>
+    >(getAllAssets)
 
     useEffect(() => {
-        const getData = async () => {
-            const data = await getAllAssets()
-            setAssetsData(data)
-        }
-        getData()
-    }, [])
+        setAssetsData(data ?? [defaultAllAssets])
+    }, [data])
+
     return (
-        <AssetsDataContext.Provider value={assetsData}>
+        <AssetsDataContext.Provider value={{ assetsData, loading, error }}>
             {children}
         </AssetsDataContext.Provider>
     )

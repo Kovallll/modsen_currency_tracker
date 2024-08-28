@@ -1,0 +1,14 @@
+@import '@scss/vars';
+
+.container {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    margin-right: $spacer-s;
+    color: var(--primary-color);
+}
+
+.input {
+    width: 80px;
+    margin-right: $spacer-xxs;
+}

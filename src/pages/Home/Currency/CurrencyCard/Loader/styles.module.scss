@@ -1,0 +1,48 @@
+@import '@scss/vars';
+@import '@scss/mixins';
+
+.container {
+    @include flex-row-start;
+    background: var(--card-background-color);
+    width: 420px;
+    height: 110px;
+    padding: $spacer-s;
+    border: var(--card-border);
+    border-radius: 10px;
+
+    @media (max-width: $sm) {
+        width: 370px;
+        height: 90px;
+    }
+}
+
+.image {
+    @include flex-row-center;
+    margin-right: $spacer-s;
+}
+
+.info {
+    @include flex-column-start;
+}
+
+.loadImage {
+    height: 40px;
+    width: 40px;
+    animation: skeleton-loading 2s linear infinite alternate;
+}
+
+.loadText {
+    height: 20px;
+    width: 200px;
+    margin-bottom: 4px;
+    animation: skeleton-loading 2s linear infinite alternate;
+}
+
+@keyframes skeleton-loading {
+    0% {
+        background-color: hsl(200, 20%, 80%);
+    }
+    100% {
+        background-color: hsl(200, 20%, 95%);
+    }
+}

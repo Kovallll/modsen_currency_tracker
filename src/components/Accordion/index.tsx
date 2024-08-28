@@ -1,38 +1,49 @@
-import { useState } from 'react'
+import classNames from 'classnames'
 
 import * as styles from './styles.module.scss'
 
 import Arrow from '@/assets/icons/arrow.svg'
-
-interface AccordionProps extends React.ButtonHTMLAttributes<HTMLDivElement> {
-    title: string
-    textData: string[]
-    theme: string
-}
+import { black, white } from '@/constants'
+import { AccordionProps } from '@/types'
 
 export const Accordion = ({
+    id,
+    isOpen,
+    handleClick,
     title,
     textData,
     theme,
     ...props
 }: AccordionProps) => {
-    const [isOpen, setIsOpen] = useState(false)
+    const iconStyle = classNames({
+        [styles.closeIcon]: isOpen,
+        [styles.openIcon]: !isOpen,
+    })
 
-    const handleOpenClick = () => {
-        setIsOpen((prev) => !prev)
+    const contentStyle = classNames({
+        [styles.visibleContent]: isOpen,
+        [styles.hideContent]: !isOpen,
+    })
+
+    const fillArrow = theme === 'dark' ? white : black
+
+    const handleShowAccordion = () => {
+        handleClick(id)
     }
 
     return (
-        <div {...props} className={styles.container} onClick={handleOpenClick}>
+        <div
+            {...props}
+            className={styles.container}
+            onClick={handleShowAccordion}
+        >
             <div className={styles.head}>
                 <p className={styles.title}>{title}</p>
-                <div className={isOpen ? styles.closeIcon : styles.openIcon}>
-                    <Arrow fill={theme === 'dark' ? '#fff' : '#000'} />
+                <div className={iconStyle}>
+                    <Arrow fill={fillArrow} />
                 </div>
             </div>
-            <div
-                className={isOpen ? styles.visibleContent : styles.hideContent}
-            >
+            <div className={contentStyle}>
                 {textData.map((text) => (
                     <p key={text} className={styles.text}>
                         {text}

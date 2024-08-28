@@ -1,34 +1,33 @@
-@import '../../styles/vars.scss';
+@import '@scss/vars';
+
+$toggleButtonWidth: 80px;
+$toggleButtonHeight: 40px;
 
 .container {
     button {
         position: relative;
-        width: 100px;
-        height: 50px;
+        width: $toggleButtonWidth;
+        height: $toggleButtonHeight;
         margin: 0;
-        border: 1px solid #bbc1e1;
         border-radius: 30px;
         outline: none;
         cursor: pointer;
-        @media (max-width: $xxl) {
-            width: 90px;
-            height: 45px;
-        }
+
         @media (max-width: $xl) {
-            width: 80px;
-            height: 40px;
+            width: calc($toggleButtonWidth - 12px);
+            height: calc($toggleButtonHeight - 8px);
         }
         @media (max-width: $lg) {
-            width: 66px;
-            height: 33px;
+            width: calc($toggleButtonWidth - 18px);
+            height: calc($toggleButtonHeight - 12px);
         }
         @media (max-width: $md) {
-            width: 58px;
-            height: 29px;
+            width: calc($toggleButtonWidth - 24px);
+            height: calc($toggleButtonHeight - 16px);
         }
         @media (max-width: $sm) {
-            width: 50px;
-            height: 25px;
+            width: calc($toggleButtonWidth - 30px);
+            height: calc($toggleButtonHeight - 20px);
         }
     }
 
@@ -38,60 +37,61 @@
         position: absolute;
         top: 1.5px;
         border-radius: 50%;
-        width: 45px;
-        height: 45px;
+        width: calc($toggleButtonWidth - 46px);
+        height: calc($toggleButtonHeight - 6px);
         transition: transform 0.25s;
-
-        @media (max-width: $xxl) {
-            width: 40px;
-            height: 40px;
-        }
+        right: 2px;
         @media (max-width: $xl) {
-            width: 35px;
-            height: 35px;
+            width: calc($toggleButtonWidth - 54px);
+            height: calc($toggleButtonHeight - 14px);
+            top: 0.5px;
         }
         @media (max-width: $lg) {
-            width: 28px;
-            height: 28px;
+            width: calc($toggleButtonWidth - 57px);
+            height: calc($toggleButtonHeight - 17px);
         }
         @media (max-width: $md) {
-            width: 24px;
-            height: 24px;
+            width: calc($toggleButtonWidth - 61px);
+            height: calc($toggleButtonHeight - 22px);
+            top: 1.5px;
         }
         @media (max-width: $sm) {
-            width: 20px;
-            height: 20px;
+            width: calc($toggleButtonWidth - 65px);
+            height: calc($toggleButtonHeight - 26px);
+            top: 0.5px;
         }
     }
 }
 
 .darkButton {
-    background: #ffffff;
+    background: $white;
+
     &::after {
-        background-color: black;
+        background-color: $black;
     }
 }
 
 .lightButton {
-    background: #000;
-    &::after {
-        background-color: white;
+    background: $black;
 
-        transform: translateX(-45px);
+    &::after {
+        background-color: $white;
+        transform: translateX(-39px);
+
         @media (max-width: $xxl) {
-            transform: translateX(-41px);
+            transform: translateX(-40px);
         }
         @media (max-width: $xl) {
             transform: translateX(-36px);
         }
         @media (max-width: $lg) {
-            transform: translateX(-28px);
+            transform: translateX(-33px);
         }
         @media (max-width: $md) {
-            transform: translateX(-24px);
+            transform: translateX(-31px);
         }
         @media (max-width: $sm) {
-            transform: translateX(-21px);
+            transform: translateX(-29px);
         }
     }
 }

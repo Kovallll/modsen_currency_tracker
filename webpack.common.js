@@ -1,3 +1,4 @@
+import Dotenv from 'dotenv-webpack'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
 import path from 'path'
 import { fileURLToPath } from 'url'
@@ -7,6 +8,9 @@ import ReactRefreshWebpackPlugin from '@pmmmwh/react-refresh-webpack-plugin'
 const plugins = [
     new HtmlWebpackPlugin({
         template: './public/index.html',
+    }),
+    new Dotenv({
+        path: './.env',
     }),
 ]
 
@@ -29,6 +33,7 @@ export default {
     resolve: {
         alias: {
             '@': path.resolve(__dirname, 'src'),
+            '@scss': path.resolve(__dirname, 'src/styles'),
         },
         extensions: ['.ts', '.js', '.jsx', '.tsx'],
     },
@@ -46,7 +51,6 @@ export default {
                             },
                         },
                     },
-                    ,
                     'sass-loader',
                 ],
             },
@@ -66,6 +70,10 @@ export default {
                 },
             },
             {
+                test: /\.(png|jpg|jpeg|gif)$/i,
+                type: 'asset/resource',
+            },
+            {
                 test: /\.tsx?$/,
                 use: 'ts-loader',
                 exclude: /node_modules/,
@@ -79,7 +87,7 @@ export default {
                     {
                         loader: 'react-svg-loader',
                         options: {
-                            jsx: true, // true outputs JSX tags
+                            jsx: true,
                         },
                     },
                 ],

@@ -1,6 +1,6 @@
 describe('the Bankcard Page', () => {
     beforeEach(() => {
-        cy.visit('/bankcard')
+        cy.visit('#/bankcard')
     })
 
     it('show search popup', () => {

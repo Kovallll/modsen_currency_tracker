@@ -1,16 +1,13 @@
-@import '../../styles/vars.scss';
+@import '@scss/vars';
+@import '@scss/mixins';
 
 .container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    @include flex-column-center;
     min-height: 100%;
 }
 
 .content {
-    display: flex;
-    justify-content: center;
+    @include flex-row-center;
     align-items: start;
     width: 100%;
     max-width: $max-w;

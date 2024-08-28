@@ -45,6 +45,8 @@ export default [
             'react-hooks/rules-of-hooks': 'error',
             'react-hooks/exhaustive-deps': 'warn',
             'import/first': 'error',
+            '@typescript-eslint/no-unsafe-function-type': 'off',
+            '@typescript-eslint/no-this-alias': 'off',
             'import/newline-after-import': 'error',
             'import/no-duplicates': 'error',
             'sort-imports': [

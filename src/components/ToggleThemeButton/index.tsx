@@ -1,4 +1,5 @@
 import { useContext } from 'react'
+import classNames from 'classnames'
 
 import * as styles from './styles.module.scss'
 
@@ -10,13 +11,17 @@ export const ToggleThemeButton = ({ ...props }) => {
     const handleClickButton = () => {
         toggleTheme()
     }
+
+    const buttonStyle = classNames({
+        [styles.darkButton]: theme === 'dark',
+        [styles.lightButton]: theme !== 'dark',
+    })
+
     return (
         <div {...props} className={styles.container}>
             <button
-                data-cy='toggle'
-                className={
-                    theme === 'dark' ? styles.darkButton : styles.lightButton
-                }
+                data-cy="toggle"
+                className={buttonStyle}
                 onClick={handleClickButton}
             />
         </div>

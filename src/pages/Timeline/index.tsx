@@ -1,45 +1,43 @@
-import { Component, createRef, ReactElement } from 'react'
+import { createRef, lazy, PureComponent, Suspense } from 'react'
 import { createPortal } from 'react-dom'
 
+import { ChartCreater } from './Chart/ChartCreater'
+import { ChartWithInfoLoader } from './Chart/ChartWithInfo/Loader'
 import * as styles from './styles.module.scss'
 
-import { ChartCreater } from '@/components/ChartCreater'
-import { ChartWithInfo } from '@/components/ChartWithInfo'
 import { SelectTimeline } from '@/components/SelectTimeline'
-import { dateNowMs, defaultAllAssets, msInDay } from '@/constants'
+import { defaultAllAssets } from '@/constants'
 import { AssetsDataContext } from '@/providers/AssetsProvider'
-import { CandlestickChartItem, CurrencyAssetsData, InputData } from '@/types'
+import {
+    AssetsDataContextType,
+    CandlestickChartItem,
+    InputData,
+    TimelinePageProps,
+    TimelinePageState,
+} from '@/types'
+import { getRandomValue, handleAddNotify, Observer } from '@/utils'
+import { modifyToCorrectChartData } from '@/utils/modifyToCorrectChartData'
 
-interface TimelinePageState {
-    currentCurrencyId: string
-    isCreateChart: boolean
-    chartData: InputData[]
-    day: number
-    notify: null | ReactElement
-}
-
-type TimelinePageProps = object
-
-class TimelinePage extends Component<TimelinePageProps, TimelinePageState> {
+const ChartWithInfo = lazy(() => import('./Chart/ChartWithInfo'))
+class TimelinePage extends PureComponent<TimelinePageProps, TimelinePageState> {
     static contextType = AssetsDataContext
-    context!: CurrencyAssetsData[]
-
+    context!: AssetsDataContextType
     private selectRef: React.RefObject<HTMLSelectElement>
     private createButtonRef: React.RefObject<HTMLButtonElement>
-    private notifyEvent: Event
     private notifyTimeout: NodeJS.Timeout | null
-
+    private observer: Observer
     constructor(props: TimelinePageProps) {
         super(props)
         this.state = {
             currentCurrencyId: '',
+            currentCurrencyChart: defaultAllAssets,
             isCreateChart: false,
             chartData: [
                 {
-                    open: this.getRandomValue(),
-                    close: this.getRandomValue(),
-                    high: this.getRandomValue(),
-                    low: this.getRandomValue(),
+                    open: getRandomValue('open'),
+                    close: getRandomValue('close'),
+                    high: getRandomValue('high'),
+                    low: getRandomValue('low'),
                     day: 1,
                 },
             ],
@@ -47,77 +45,52 @@ class TimelinePage extends Component<TimelinePageProps, TimelinePageState> {
             day: 2,
         }
         this.selectRef = createRef()
-        this.notifyEvent = new Event('createChart')
         this.createButtonRef = createRef()
         this.notifyTimeout = null
+        this.observer = new Observer()
     }
 
     componentDidMount() {
         this.setState({
             currentCurrencyId: this.selectRef.current?.value ?? '',
         })
-        this.createButtonRef.current?.addEventListener(
-            'createChart',
-            this.handleAddNotify
-        )
+        this.createButtonRef.current?.addEventListener('click', () => {
+            this.observer.broadcast()
+        })
+    }
+
+    componentDidUpdate(prevState: Readonly<TimelinePageState>) {
+        const { chartData, currentCurrencyChart, currentCurrencyId } =
+            this.state
+        this.observer.subscribe(() => this.setState(handleAddNotify(chartData)))
+
+        if (this.state.notify !== null) {
+            this.notifyTimeout = setTimeout(() => {
+                this.setState({ notify: null })
+            }, 2000)
+        }
+        if (prevState.currentCurrencyChart !== currentCurrencyChart) {
+            const currency =
+                this.context.assetsData.find(
+                    (item) => item.asset_id === currentCurrencyId
+                ) ?? defaultAllAssets
+            this.setState({ currentCurrencyChart: currency })
+        }
     }
 
     componentWillUnmount() {
-        this.createButtonRef.current?.removeEventListener(
-            'createChart',
-            this.handleAddNotify
-        )
-        clearTimeout(this.notifyTimeout ?? '')
-    }
-
-    getRandomValue = () => {
-        return String(Math.trunc(Math.random() * 10 + 1))
-    }
-
-    handleAddNotify = () => {
         const { chartData } = this.state
 
-        const isEmpty = chartData.find((item) =>
-            Object.values(item).includes('')
+        clearTimeout(this.notifyTimeout ?? '')
+        this.observer.unsubscribe(() =>
+            this.setState(handleAddNotify(chartData))
         )
-
-        if (!isEmpty) {
-            this.setState({
-                isCreateChart: true,
-                notify: (
-                    <p
-                        className={styles.seccessNotify}
-                        data-cy="success-notify"
-                    >
-                        Chart successful created
-                    </p>
-                ),
-            })
-        } else {
-            this.setState({
-                notify: (
-                    <p className={styles.errorNotify} data-cy="error-notify">
-                        Error: Fill all inputs
-                    </p>
-                ),
-            })
-        }
-
-        this.notifyTimeout = setTimeout(() => {
-            this.setState({ notify: null })
-        }, 2000)
     }
 
     handleUpdateCurrency = () => {
         this.setState({
             currentCurrencyId: this.selectRef.current?.value ?? '',
         })
-    }
-
-    handleCreateChart = () => {
-        if (!this.state.isCreateChart) {
-            this.createButtonRef.current?.dispatchEvent(this.notifyEvent)
-        }
     }
 
     handleDeleteInputs = (day: number) => {
@@ -152,10 +125,10 @@ class TimelinePage extends Component<TimelinePageProps, TimelinePageState> {
             chartData: [
                 ...chartData,
                 {
-                    open: this.getRandomValue(),
-                    close: this.getRandomValue(),
-                    high: this.getRandomValue(),
-                    low: this.getRandomValue(),
+                    open: getRandomValue('open'),
+                    close: getRandomValue('close'),
+                    high: getRandomValue('high'),
+                    low: getRandomValue('low'),
                     day,
                 },
             ],
@@ -165,34 +138,17 @@ class TimelinePage extends Component<TimelinePageProps, TimelinePageState> {
     }
 
     render() {
-        const assetsData = this.context
-        const { currentCurrencyId, chartData, isCreateChart, notify } =
+        const assets = this.context
+        const { chartData, isCreateChart, notify, currentCurrencyChart } =
             this.state
 
-        const currentCurrencyChart =
-            assetsData.find((item) => item.asset_id === currentCurrencyId) ??
-            defaultAllAssets
-
-        const correctChartData: CandlestickChartItem[] = chartData.map(
-            (item) => {
-                const o = Number.parseFloat(item.open)
-                const c = Number.parseFloat(item.close)
-                const l = Number.parseFloat(item.low)
-                const h = Number.parseFloat(item.high)
-                return {
-                    x: Number(item.day) * msInDay + dateNowMs,
-                    o: o,
-                    h: h,
-                    c: c,
-                    l: l,
-                }
-            }
-        )
+        const correctChartData: CandlestickChartItem[] =
+            modifyToCorrectChartData(chartData)
         return (
-            <div className={styles.container}>
+            <main className={styles.container}>
                 <div className={styles.selectWrap}>
                     <SelectTimeline
-                        assetsData={assetsData}
+                        assets={assets}
                         handleUpdateCurrency={this.handleUpdateCurrency}
                         selectRef={this.selectRef}
                     />
@@ -201,18 +157,19 @@ class TimelinePage extends Component<TimelinePageProps, TimelinePageState> {
                     createButtonRef={this.createButtonRef}
                     chartData={chartData}
                     handleAddInputs={this.handleAddInputs}
-                    handleCreateChart={this.handleCreateChart}
                     handleDeleteInputs={this.handleDeleteInputs}
                     handleUpdateChartData={this.handleUpdateChartData}
                 />
                 {isCreateChart && (
-                    <ChartWithInfo
-                        currentCurrencyChart={currentCurrencyChart}
-                        data={correctChartData}
-                    />
+                    <Suspense fallback={<ChartWithInfoLoader />}>
+                        <ChartWithInfo
+                            currentCurrencyChart={currentCurrencyChart}
+                            data={correctChartData}
+                        />
+                    </Suspense>
                 )}
                 {createPortal(notify, document.body)}
-            </div>
+            </main>
         )
     }
 }

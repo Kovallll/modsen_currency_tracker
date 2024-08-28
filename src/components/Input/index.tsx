@@ -1,15 +1,9 @@
 import { PureComponent } from 'react'
+import classNames from 'classnames'
 
 import * as styles from './styles.module.scss'
 
-interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
-    searchValue: number | string
-    handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void
-    inputRef?: React.RefObject<HTMLInputElement>
-    text?: string
-    className?: string
-    placeholder?: string
-}
+import { InputProps } from '@/types'
 
 export class Input extends PureComponent<InputProps> {
     static defaultProps = {
@@ -22,7 +16,7 @@ export class Input extends PureComponent<InputProps> {
 
     render() {
         const {
-            searchValue,
+            value,
             handleChange,
             text,
             className,
@@ -31,14 +25,16 @@ export class Input extends PureComponent<InputProps> {
             ...props
         } = this.props
 
+        const inputStyle = classNames(styles.input, className)
+
         return (
             <div className={styles.container}>
                 {text && <p className={styles.text}>{text}</p>}
                 <input
                     {...props}
-                    value={searchValue}
+                    value={value}
                     onChange={handleChange}
-                    className={`${styles.input} ${className}`}
+                    className={inputStyle}
                     ref={inputRef}
                     placeholder={placeholder}
                 />

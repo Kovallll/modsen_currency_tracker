@@ -1,15 +1,10 @@
 import { PureComponent } from 'react'
+import classNames from 'classnames'
 
 import * as styles from './styles.module.scss'
 
 import { Currencies } from '@/constants'
-
-interface CurrencyPopupProps extends React.InputHTMLAttributes<HTMLDivElement> {
-    searchedCurrencies: Currencies[]
-    onClickCurrency: (currency: Currencies) => void
-    cursor: number
-    divContainerRef: React.RefObject<HTMLDivElement>
-}
+import { CurrencyPopupProps } from '@/types'
 
 export class CurrencyPopup extends PureComponent<CurrencyPopupProps> {
     constructor(props: CurrencyPopupProps) {
@@ -31,7 +26,9 @@ export class CurrencyPopup extends PureComponent<CurrencyPopupProps> {
                         <div
                             key={currency}
                             tabIndex={cursor}
-                            className={`${styles.currencyWrap} ${cursor === index ? styles.active : null}`}
+                            className={classNames(styles.currencyWrap, {
+                                [styles.active]: cursor === index,
+                            })}
                             onClick={this.handleOnClickCurrency(currency)}
                         >
                             <p className={styles.currency}>{currency}</p>
